@@ -1,0 +1,25 @@
+ul, li {
+	list-style: none;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+th {
+	width: 9%;
+}
+
+
+.left_navbar {
+	display: block;
+	float: left;
+}
+
+.user_table {
+	display: inline-block;
+	padding-left: 30px;
+	
+}

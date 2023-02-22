@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+
+<body>
+<div class="wrapper">
+	<div class="left_navbar">
+		<ul>
+			<li>사용자 관리</li>
+				<ul>
+					<li>사용자 등록</li>
+				</ul>
+			<li>사용자 권한 설정</li>
+			<li>메뉴 권한 설정</li>
+			<li>메뉴 설정</li>		
+		</ul>
+	</div>
+	
+	
+	<div class="user_table">
+		<div class="">
+			<div class="userAdd">
+				<button class="addBtn">사용자 추가</button>
+			</div>
+			<div>
+				<input type="text">
+				<button class="searchBtn">검색</button>
+			</div>
+		</div>
+		<table>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>부서</th>
+				<th>이메일</th>
+				<th>모바일</th>
+				<th>상태</th>
+				<th>마지막 접속</th>
+				<th>등록일</th>
+				<th>수정일</th>
+				<th>수정</th>				
+			</tr>
+			<tr th:each="list, status: ${userList}">
+				<td th:text="${list.userId}"></td>
+				<td th:text="${list.userName}"></td>
+				<td th:text="${list.department}"></td>
+				<td th:text="${list.email}"></td>
+				<td th:text="${list.mobile}"></td>
+				<td th:text="${list.state}"></td>
+				<td th:text="${list.lastLogin}"></td>
+				<td th:text="${list.createTime}"></td>
+				<td th:text="${list.modifyTime}"></td>
+				<td><button>수정</button></td>					
+			</tr>			
+		</table>
+	</div>
+	
+</div>	
+	
+</body>
+</html>
+
