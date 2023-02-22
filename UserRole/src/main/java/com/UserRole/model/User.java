@@ -1,4 +1,4 @@
-package com.example.UserRole.model;
+package com.UserRole.model;
 
 import lombok.Data;
 

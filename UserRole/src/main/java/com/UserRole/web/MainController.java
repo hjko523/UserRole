@@ -1,4 +1,4 @@
-package com.example.UserRole.web;
+package com.UserRole.web;
 
 import org.springframework.stereotype.Controller;
 

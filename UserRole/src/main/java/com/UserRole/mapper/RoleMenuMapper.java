@@ -1,4 +1,4 @@
-package com.example.UserRole.mapper;
+package com.UserRole.mapper;
 
 public interface RoleMenuMapper {
   

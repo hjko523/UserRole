@@ -1,13 +1,13 @@
-package com.example.UserRole.service.impl;
+package com.UserRole.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.UserRole.mapper.UserMapper;
-import com.example.UserRole.model.User;
-import com.example.UserRole.service.UserService;
+import com.UserRole.mapper.UserMapper;
+import com.UserRole.model.User;
+import com.UserRole.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{

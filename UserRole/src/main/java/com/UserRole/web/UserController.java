@@ -1,4 +1,4 @@
-package com.example.UserRole.web;
+package com.UserRole.web;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.UserRole.model.User;
-import com.example.UserRole.service.UserService;
+import com.UserRole.model.User;
+import com.UserRole.service.UserService;
 
 @Controller
 public class UserController {
