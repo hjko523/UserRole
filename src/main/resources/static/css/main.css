@@ -27,3 +27,12 @@ table, th, td {
 .userSearch {
 	padding-bottom: 10px;;
 }
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:active :hover :visited {
+	text-decoration: none;
+}

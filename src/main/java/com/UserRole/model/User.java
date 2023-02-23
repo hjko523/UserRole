@@ -24,4 +24,6 @@ public class User {
 	
 	private String modifyTime;
 	
+	private String roleName;
+	
 }

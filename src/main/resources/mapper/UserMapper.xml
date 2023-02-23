@@ -2,25 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.UserRole.mapper.UserMapper">
-  <resultMap id="userMap" type="com.UserRole.model.User">  
+
+  <resultMap id="userMap" type="com.UserRole.model.User">    
+    <result column="user_id" 			property="userId" />
+    <result column="user_name"  		property="username" />
+    <result column="department" 		property="department" />
+    <result column="email"  			property="email" />
+    <result column="mobile" 			property="mobile" />
+    <result column="state"  			property="state" />
+    <result column="last_login_time"  	property="lastLoginTime" />
+    <result column="create_time"  		property="createTime" />
+    <result column="modify_time"  		property="modifyTime" />    
+    <result column="role_name"  		property="roleName" />
+  </resultMap>
   
-    <result column="user_id" property="userId" />
-    <result column="user_name"  property="username" />
-    <result column="department"  property="department" />
-    <result column="email"  property="email" />
-    <result column="mobile" property="mobile" />
-    <result column="state"  property="state" />
-    <result column="last_login_time"  property="lastLoginTime" />
-    <result column="create_time"  property="createTime" />
-    <result column="modify_time"  property="modifyTime" />
+  <resultMap id="roleMap" type="com.UserRole.model.Role">    
+    <result column="role_id"  	property="roleId" />
+    <result column="role_name"  property="roleName" />
+    <result column="state" 		property="state" />
+  </resultMap>
+   
     
+  <resultMap id="userRoleMap" type="com.UserRole.model.UserRole">   
+    <result column="user_role_id" 	property="userRoleId" />
+    <result column="user_id" 		property="userId" />
+    <result column="role_id" 		property="roleId" />
   </resultMap>
   
   
   <insert id="insert" parameterType="com.UserRole.model.User">
    
     insert into user (user_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time)
-    values (#{userId}, #{userId},#{userId},#{userId},#{userId},#{userId},#{userId},#{userId},#{userId},#{userId},)
+    values (#{userId}, #{username},#{department},#{email},#{mobile},#{state},#{lastLoginTime},#{createTime},#{roleName})
   </insert>
   
   <sql id="find_xxx">
@@ -37,21 +50,43 @@
   
   
   <select id="findUsers" parameterType="string" resultMap="userMap">  
-		select user_id, 
-				user_name, 
-				department, 
-				email, 
-				mobile, 
-				CASE LENGTH(mobile)
-			       WHEN 11 THEN CONCAT(LEFT(mobile, 3), '-', MID(mobile, 4, 4), '-', RIGHT(mobile, 4))
-			       WHEN 10 THEN CONCAT(LEFT(mobile, 3), '-', MID(mobile, 4, 3), '-', RIGHT(mobile, 4))
-			        END x,
-				state, 
+		SELECT  u.user_id, 
+				u.user_name, 
+				u.department, 
+				u.email, 
+				u.mobile, 
+				u.state, 
 				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
-				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time
-				
-	<include refid="from_xxx"/>
+				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+				r.role_name
+						
+	from user u	
+
+        JOIN user_role ur on u.user_id = ur.user_id
+        JOIN role r on r.role_id = ur.role_id
+
+       
+  </select>
+  
+   <select id="findUserById" parameterType="string" resultMap="userMap">  
+		SELECT  u.user_id, 
+				u.user_name, 
+				u.department, 
+				u.email, 
+				u.mobile,				u.state, 
+				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
+				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
+				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+				r.role_name
+						
+		FROM user u	
+	
+	        JOIN user_role ur on u.user_id = ur.user_id
+	        JOIN role r on r.role_id = ur.role_id
+	
+		WHERE u.user_id=#{userId}
+       
   </select>
   
   <update id="updateByPrimaryKey" parameterType="com.UserRole.model.User">

@@ -9,6 +9,8 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 
     delete from user_role

@@ -24,13 +24,13 @@ th {
 <div class="wrapper">
 	<div class="left_navbar">
 		<ul>
-			<li>사용자 관리</li>
+			<li><a href="/user/user_list" >사용자 관리</a></li>
 				<ul>
-					<li>사용자 등록</li>
+					<li><a href="/user/user_add" >사용자 등록</a></li>
 				</ul>
-			<li>사용자 권한 설정</li>
-			<li>메뉴 권한 설정</li>
-			<li>메뉴 설정</li>		
+			<li><a href="/user/user_list" >사용자 권한 설정</a></li>
+			<li><a href="/user/user_list" >메뉴 권한 설정</a></li>
+			<li><a href="/user/user_list" >메뉴 설정</a></li>		
 		</ul>
 	</div>
 	
@@ -38,7 +38,7 @@ th {
 	<div class="user_table">
 		<div class="table_sub">
 			<div class="userAdd">
-				<button class="addBtn">사용자 추가</button>
+				<button class="addBtn" type="button" onclick="location.href='/user/user_add'">사용자 추가</button>
 			</div>
 			<div class="userSearch">
 				<input type="text">
@@ -63,19 +63,48 @@ th {
 				<td th:text="${list.userId}"></td>
 				<td th:text="${list.username}"></td>
 				<td th:text="${list.department}"></td>
-				<td ></td>
+				<td th:text="${list.roleName}"></td>
 				<td th:text="${list.email}"></td>
 				<td th:text="${list.mobile}"></td>
 				<td th:text="${list.state}"></td>
 				<td th:text="${list.lastLoginTime}"></td>
 				<td th:text="${list.createTime}"></td>
 				<td th:text="${list.modifyTime}"></td>
-				<td><button data-id="${p.id}" >수정</button></td>					
+				<td><button id="edit_btn" th:onclick="'location.href=\'' + @{/user/edit_load(userId=${list.userId})} + '\''">수정</button></td>
+				<!-- <td><button id="edit_btn" th:onclick="location.href='/user/user_edit?userId=${list.userId}'">수정</button></td> -->					
 			</tr>			
 		</table>
 	</div>
 	
 </div>	
+
+
+<script src="/js/jquery-2.1.1.js"></script>
+
+
+<script>
+
+
+
+	function userEdit() {	
+		console.log("클릭");
+		
+		
+         var id = $("#edit_btn").val();
+	    
+	    console.log(id);	  
+	    
+	    $.ajax({
+            url: "edit_load",
+            type: "post",
+            data: {userId:id},
+            
+           
+            });
+	};  
+	
+
+</script>
 	
 </body>
 </html>

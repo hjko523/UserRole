@@ -10,4 +10,6 @@ import com.UserRole.model.User;
 public interface UserMapper {
 
 	List<User> findUsers();
+
+	User findUserById(String id);
 }

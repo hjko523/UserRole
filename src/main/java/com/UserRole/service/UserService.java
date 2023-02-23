@@ -8,4 +8,5 @@ public interface UserService {
 		
 	List<User> findUsers();
 
+	User findUserById(String id);
 }

@@ -4,10 +4,11 @@
 <mapper namespace="com.UserRole.mapper.RoleMapper">
 
   <resultMap id="BaseResultMap" type="com.UserRole.model.Role">    
-    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
-    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
-    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="role_id"  	property="roleId" />
+    <result column="role_name"  property="roleName" />
+    <result column="state"  	property="state" />
   </resultMap>
+
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     
