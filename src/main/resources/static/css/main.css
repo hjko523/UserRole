@@ -8,10 +8,6 @@ table, th, td {
 	text-align: center;
 }
 
-th {
-	width: 9%;
-}
-
 
 .left_navbar {
 	display: block;
@@ -22,4 +18,12 @@ th {
 	display: inline-block;
 	padding-left: 30px;
 	
+}
+
+.userAdd {
+	padding-bottom: 10px;;
+}
+
+.userSearch {
+	padding-bottom: 10px;;
 }

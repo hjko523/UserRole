@@ -1,13 +1,14 @@
 package com.UserRole.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
 public class User {
 
 	private String userId;
 	
-	private String userName;
+	private String username;
 	
 	private String department;
 	
@@ -17,7 +18,7 @@ public class User {
 	
 	private String state;
 	
-	private String lastLogin;
+	private String lastLoginTime;
 	
 	private String createTime;
 	

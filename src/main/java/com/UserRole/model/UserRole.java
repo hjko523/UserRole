@@ -3,7 +3,7 @@ package com.UserRole.model;
 import lombok.Data;
 
 @Data
-public class User_role {
+public class UserRole {
 
 	private String userRoleId;
 		

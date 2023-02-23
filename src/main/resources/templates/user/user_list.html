@@ -7,8 +7,20 @@
 
 <link rel="stylesheet" href="/css/main.css" type="text/css">
 
+<style>
 
+table {
+	width: 1200px;
+}
+
+th {
+	width: 8%;
+}
+
+</style>
 <body>
+
+
 <div class="wrapper">
 	<div class="left_navbar">
 		<ul>
@@ -24,11 +36,11 @@
 	
 	
 	<div class="user_table">
-		<div class="">
+		<div class="table_sub">
 			<div class="userAdd">
 				<button class="addBtn">사용자 추가</button>
 			</div>
-			<div>
+			<div class="userSearch">
 				<input type="text">
 				<button class="searchBtn">검색</button>
 			</div>
@@ -38,6 +50,7 @@
 				<th>아이디</th>
 				<th>이름</th>
 				<th>부서</th>
+				<th>역할</th>
 				<th>이메일</th>
 				<th>모바일</th>
 				<th>상태</th>
@@ -46,17 +59,18 @@
 				<th>수정일</th>
 				<th>수정</th>				
 			</tr>
-			<tr th:each="list, status: ${userList}">
+			<tr th:each="list : ${userList}">
 				<td th:text="${list.userId}"></td>
-				<td th:text="${list.userName}"></td>
+				<td th:text="${list.username}"></td>
 				<td th:text="${list.department}"></td>
+				<td ></td>
 				<td th:text="${list.email}"></td>
 				<td th:text="${list.mobile}"></td>
 				<td th:text="${list.state}"></td>
-				<td th:text="${list.lastLogin}"></td>
+				<td th:text="${list.lastLoginTime}"></td>
 				<td th:text="${list.createTime}"></td>
 				<td th:text="${list.modifyTime}"></td>
-				<td><button>수정</button></td>					
+				<td><button data-id="${p.id}" >수정</button></td>					
 			</tr>			
 		</table>
 	</div>
