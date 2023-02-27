@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+<style>
+
+input {
+	width: 200px;
+}
+
+.add_buttonZone {
+text-align:center;
+padding-top: 20px;
+}
+
+.table_title {
+text-align:center;
+}
+
+</style>
+<body>
+
+
+<div class="wrapper">
+	<div class="left_navbar">
+		<ul>
+			<li><a href="/user/user_list" >사용자 관리</a></li>
+				<ul>
+					<li><a href="/user/user_add" >사용자 등록</a></li>
+				</ul>
+			<li>사용자 권한 설정</li>
+			<li>메뉴 권한 설정</li>
+			<li>메뉴 설정</li>		
+		</ul>
+	</div>
+	
+	
+	<div class="user_table">
+		<div class="table_title">
+			<h1>사용자 등록</h1>
+		</div>
+		
+		<table width="500px">
+			<tr>
+				<th width="30%">아이디</th>
+				<td><input type="text" id="userId" name="userId"></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input type="text" id="username" name="username"></td>
+			</tr>	
+			<tr>
+				<th>부서</th>
+				<td>
+					<select name="department" id="department">
+                        <option value="">부서를 선택하세요</option>
+                        <option value="경영">경영</option>
+                        <option value="운영">운영</option>
+                        <option value="기획">기획</option>
+                        <option value="마케팅">마케팅</option>
+                        <option value="관계사">관계사</option>
+                    </select>
+				</td>
+			</tr>	
+			<tr>
+				<th>역할</th>
+				<td>	
+					<select name="department" id="department">
+                        <option value="">역할을 선택하세요</option>
+                        <option value="경영">관리자</option>
+                        <option value="운영">부관리자</option>
+                        <option value="기획">직원</option>
+                        <option value="마케팅">제한</option>
+                        <option value="관계사">관계사</option>
+                    </select>
+               </td>
+			</tr>	
+			<tr>
+				<th>이메일</th>
+				<td><input type="text" id="email" name="email"></td>
+			</tr>	
+			<tr>
+				<th>연락처</th>
+				<td><input type="text" id="email" name="email"></td>
+			</tr>				
+				
+		</table>
+		
+		<div class="add_buttonZone" >
+			<button type="button">취소</button>
+			<button>등록</button>
+		</div>
+
+	</div>
+	
+</div>	
+	
+</body>
+</html>
+
+
