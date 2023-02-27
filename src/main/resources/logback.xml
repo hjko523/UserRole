@@ -1,0 +1,21 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-3level %logger{5} - %msg %n</pattern>
+    </encoder>
+  </appender>
+  
+  <logger name="jdbc" level="OFF"/>
+  
+  <logger name="jdbc.sqlonly" level="OFF"/> <!--  -->
+  <logger name="jdbc.sqltiming" level="DEBUG"/> <!-- sql문과 sql을 실행시 숭행된 시간정보 -->
+  <logger name="jdbc.audit" level="OFF"/> <!-- ResultSet을 제외한 모든 jdbc 호출정보 로그 -->
+  <logger name="jdbc.resultset" level="OFF"/> <!-- ResultSet을 포함한 모든 jdbc호출 정보 -->
+  <logger name="jdbc.resultsettable" level="DEBUG"/> <!-- sql 결과 조회된 데이터의 테이블 로그 -->
+  <logger name="jdbc.connection" level="OFF"/>
+  
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+  </root>
+  
+</configuration>

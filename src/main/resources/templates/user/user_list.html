@@ -42,7 +42,7 @@ th {
 			</div>
 			<div class="userSearch">
 				<input type="text">
-				<button class="searchBtn">검색</button>
+				<button class="searchBtn" onclick="alert('오픈중')">검색</button>
 			</div>
 		</div>
 		<table>
@@ -60,7 +60,7 @@ th {
 				<th>수정</th>				
 			</tr>
 			<tr th:each="list : ${userList}">
-				<td th:text="${list.userId}"></td>
+				<td th:text="${list.loginId}"></td>
 				<td th:text="${list.username}"></td>
 				<td th:text="${list.department}"></td>
 				<td th:text="${list.roleName}"></td>
@@ -70,7 +70,7 @@ th {
 				<td th:text="${list.lastLoginTime}"></td>
 				<td th:text="${list.createTime}"></td>
 				<td th:text="${list.modifyTime}"></td>
-				<td><button id="edit_btn" th:onclick="'location.href=\'' + @{/user/edit_load(userId=${list.userId})} + '\''">수정</button></td>
+				<td><button id="edit_btn" th:onclick="'location.href=\'' + @{/user/load_edit(userId=${list.userId})} + '\''">수정</button></td>
 				<!-- <td><button id="edit_btn" th:onclick="location.href='/user/user_edit?userId=${list.userId}'">수정</button></td> -->					
 			</tr>			
 		</table>

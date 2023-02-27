@@ -8,6 +8,8 @@ public class User {
 
 	private String userId;
 	
+	private String loginId;
+	
 	private String username;
 	
 	private String department;
