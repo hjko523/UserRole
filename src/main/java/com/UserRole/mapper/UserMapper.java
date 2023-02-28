@@ -12,4 +12,6 @@ public interface UserMapper {
 	List<User> findUsers();
 
 	User findUserById(String id);
+
+	int addUser(User user);
 }

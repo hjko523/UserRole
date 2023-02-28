@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
 
 
 <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
 
 <script src="/js/jquery-2.1.1.js"></script>
 
-  <th:block layout:fragment="script"></th:block>
   <th:block layout:fragment="css"></th:block>
+
+
  
 
-</head>
+
 <body>
 
 <div th:replace="fragments/menubar::menubar"></div>
@@ -22,7 +20,7 @@
 <div layout:fragment="content" class="content">
 
 </div>
-
+  <th:block layout:fragment="script"></th:block>
 
 
 </body>

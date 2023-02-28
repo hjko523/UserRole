@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+      layout:decorate="~{layout/layout1}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 
-<link rel="stylesheet" href="/css/main.css" type="text/css">
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+</th:block>
 
+<th:block layout:fragment="css">
 <style>
 
 
@@ -31,81 +36,74 @@ input {
 
 
 </style>
+
+</th:block>
+
 <body>
 
+<div layout:fragment="content">
 
-<div class="wrapper">
-	<div class="left_navbar">
-		<ul>
-			<li><a href="/user/user_list" >사용자 관리</a></li>
-				<ul>
-					<li><a href="/user/user_add" >사용자 등록</a></li>
-				</ul>
-			<li>사용자 권한 설정</li>
-			<li>메뉴 권한 설정</li>
-			<li>메뉴 설정</li>		
-		</ul>
-	</div>
-	
-	
-	<div class="user_table">
-		<div class="table_title">
-			<h1>사용자 상세/수정</h1>
-		</div>
-		<form role="form" id="userEditForm" name="userEditForm">
-			<input type="hidden" th:value="${user.userId}">
-			<table width="500px">
-				<tr>
-					<th width="30%">아이디</th>
-					<td th:text="${user.loginId}"></td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td><input type="text" id="username" name="username" th:value="${user.username}"></td>
-				</tr>	
-				<tr>
-					<th>부서</th>
-					<td>
-						<select name="department" id="department">
-	                        <option value="경영" th:selected="${user.department}=='경영'" >경영</option>
-	                        <option value="운영" th:selected="${user.department}=='운영'">운영</option>
-	                        <option value="기획" th:selected="${user.department}=='기획'">기획</option>
-	                        <option value="마케팅" th:selected="${user.department}=='마케팅'">마케팅</option>
-	                        <option value="관계사" th:selected="${user.department}=='관계사'">관계사</option>
-	                    </select>
-					</td>
-				</tr>	
-				<tr>
-					<th>역할</th>
-					<td>	
-						<select name="role">
-	                        <option value="경영" th:selected="${user.roleName}=='관리자'">관리자</option>
-	                        <option value="운영" th:selected="${user.roleName}=='부관리자'">부관리자</option>
-	                        <option value="기획" th:selected="${user.roleName}=='직원'">직원</option>
-	                        <option value="마케팅" th:selected="${user.roleName}=='제한'">제한</option>
-	                        <option value="관계사" th:selected="${user.roleName}=='관계사'">관계사</option>
-	                    </select>
-	               </td>
-				</tr>	
-				<tr>
-					<th>이메일</th>
-					<td><input type="text" id="email" name="email" th:value="${user.email}"></td>
-				</tr>	
-				<tr>
-					<th>연락처</th>
-					<td><input type="text" id="mobile" name="mobile" th:value="${user.mobile}"></td>
-				</tr>				
-					
-			</table>
-			
-			<div class="add_buttonZone" >
-				<button type="button">취소</button>
-				<button>수정</button>
+	<div class="wrapper">		
+		
+		<div class="user_table">
+			<div class="table_title">
+				<h1>사용자 상세/수정</h1>
 			</div>
-		</form>
-	</div>
-	
+			<form role="form" id="userEditForm" name="userEditForm">
+				<input type="hidden" th:value="${user.userId}">
+				<table width="500px">
+					<tr>
+						<th width="30%">아이디</th>
+						<td th:text="${user.userId}"></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td><input type="text" id="username" name="username" th:value="${user.username}"></td>
+					</tr>	
+					<tr>
+						<th>부서</th>
+						<td>
+							<select name="department" id="department">
+		                        <option value="경영" th:selected="${user.department}=='경영'" >경영</option>
+		                        <option value="운영" th:selected="${user.department}=='운영'">운영</option>
+		                        <option value="기획" th:selected="${user.department}=='기획'">기획</option>
+		                        <option value="마케팅" th:selected="${user.department}=='마케팅'">마케팅</option>
+		                        <option value="관계사" th:selected="${user.department}=='관계사'">관계사</option>
+		                    </select>
+						</td>
+					</tr>	
+					<tr>
+						<th>역할</th>
+						<td>	
+							<select name="role">
+		                        <option value="경영" th:selected="${user.roleName}=='관리자'">관리자</option>
+		                        <option value="운영" th:selected="${user.roleName}=='부관리자'">부관리자</option>
+		                        <option value="기획" th:selected="${user.roleName}=='직원'">직원</option>
+		                        <option value="마케팅" th:selected="${user.roleName}=='제한'">제한</option>
+		                        <option value="관계사" th:selected="${user.roleName}=='관계사'">관계사</option>
+		                    </select>
+		               </td>
+					</tr>	
+					<tr>
+						<th>이메일</th>
+						<td><input type="text" id="email" name="email" th:value="${user.email}"></td>
+					</tr>	
+					<tr>
+						<th>연락처</th>
+						<td><input type="text" id="mobile" name="mobile" th:value="${user.mobile}"></td>
+					</tr>				
+						
+				</table>
+				
+				<div class="add_buttonZone" >
+					<button type="button">취소</button>
+					<button>수정</button>
+				</div>
+			</form>
+		</div>
+		
 </div>	
+</div>
 	
 </body>
 </html>

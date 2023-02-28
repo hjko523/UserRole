@@ -5,7 +5,7 @@
 
   <resultMap id="userMap" type="com.UserRole.model.User">    
     <result column="user_id" 			property="userId" />
-    <result column="login_id" 			property="loginId" />
+ 
     <result column="user_name"  		property="username" />
     <result column="department" 		property="department" />
     <result column="email"  			property="email" />
@@ -31,15 +31,18 @@
   </resultMap>
   
   
-  <insert id="insert" parameterType="com.UserRole.model.User">
+  <insert id="addUser" parameterType="com.UserRole.model.User">
+
    
-    insert into user (user_id, login_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time)
-    values (#{userId}, #{loginId}, #{username},#{department},#{email},#{mobile},#{state},#{lastLoginTime},#{createTime},#{roleName})
+    INSERT INTO 	user (user_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time)
+    VALUES  		(#{userId}, #{username}, #{department}, #{email}, #{mobile}, #{state}, #{lastLoginTime}, #{createTime}, #{modifyTime})
+
+    
   </insert>
   
   <sql id="find_xxx">
   		<![CDATA[
-  		select user_id, login_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time
+  		select user_id,  user_name, department, email, mobile, state, last_login_time, create_time, modify_time
   		]]>
   </sql>
   
@@ -52,7 +55,7 @@
   
   <select id="findUsers" parameterType="string" resultMap="userMap">  
 		SELECT  u.user_id, 
-				u.login_id,
+			
 				u.user_name, 
 				u.department, 
 				u.email, 
@@ -73,7 +76,7 @@
   
    <select id="findUserById" parameterType="string" resultMap="userMap">  
 		SELECT  u.user_id, 
-				u.login_id,
+				
 				u.user_name, 
 				u.department, 
 				u.email, 

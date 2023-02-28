@@ -11,6 +11,7 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
 </th:block>
 
+<th:block layout:fragment="css">
 <style>
 
 table {
@@ -22,6 +23,8 @@ th {
 }
 
 </style>
+</th:block>
+
 <body>
 
 
@@ -53,7 +56,7 @@ th {
 				<th>수정</th>				
 			</tr>
 			<tr th:each="list : ${userList}">
-				<td th:text="${list.loginId}"></td>
+				<td th:text="${list.userId}"></td>
 				<td th:text="${list.username}"></td>
 				<td th:text="${list.department}"></td>
 				<td th:text="${list.roleName}"></td>
@@ -75,30 +78,6 @@ th {
 
 <script src="/js/jquery-2.1.1.js"></script>
 
-
-<script>
-
-
-
-	function userEdit() {	
-		console.log("클릭");
-		
-		
-         var id = $("#edit_btn").val();
-	    
-	    console.log(id);	  
-	    
-	    $.ajax({
-            url: "edit_load",
-            type: "post",
-            data: {userId:id},
-            
-           
-            });
-	};  
-	
-
-</script>
 	
 </body>
 </html>

@@ -3,18 +3,13 @@
 
 <mapper namespace="com.UserRole.mapper.RoleMapper">
 
-  <resultMap id="BaseResultMap" type="com.UserRole.model.Role">    
+  <resultMap id="roleMap" type="com.UserRole.model.Role">    
     <result column="role_id"  	property="roleId" />
     <result column="role_name"  property="roleName" />
     <result column="state"  	property="state" />
   </resultMap>
 
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    
-    delete from role
-    where role_id = #{roleId,jdbcType=VARCHAR}
-  </delete>
   <insert id="insert" parameterType="com.UserRole.model.Role">
    
     insert into role (role_id, role_name, state
@@ -22,6 +17,25 @@
     values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
       )
   </insert>
+  
+  	<sql id="find_xxx">
+	    <![CDATA[
+        select role_id, role_name, state
+        ]]>
+	</sql>
+	
+	<sql id="from_xxx">
+	    <![CDATA[
+	       from role
+	       ]]>
+	</sql>
+
+	<select id="findRole" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+	</select>
+	
+	
   <update id="updateByPrimaryKey" parameterType="com.UserRole.model.Role">
    
     update role
@@ -29,13 +43,13 @@
       state = #{state,jdbcType=INTEGER}
     where role_id = #{roleId,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="roleMap">
     
     select role_id, role_name, state
     from role
     where role_id = #{roleId,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultMap="roleMap">
    
     select role_id, role_name, state
     from role

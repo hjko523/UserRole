@@ -3,12 +3,19 @@
 
 <mapper namespace="com.UserRole.mapper.UserRoleMapper">
 
-  <resultMap id="BaseResultMap" type="com.UserRole.model.UserRole">
+  <resultMap id="urMap" type="com.UserRole.model.UserRole">
    
     <result column="user_role_id" jdbcType="VARCHAR" property="userRoleId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
+  
+  <insert id="addUr" parameterType="com.UserRole.model.UserRole">
+
+	INSERT INTO 	user_role (user_role_id, user_id, role_id)
+	VALUES  		(#{userRoleId}, #{userId},#{roleId})
+	
+  </insert>
   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -16,13 +23,7 @@
     delete from user_role
     where user_role_id = #{userRoleId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.UserRole.model.UserRole">
 
-    insert into user_role (user_role_id, user_id, role_id
-      )
-    values (#{userRoleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
-      )
-  </insert>
   <update id="updateByPrimaryKey" parameterType="com.UserRole.model.UserRole">
 
     update user_role
@@ -30,13 +31,13 @@
       role_id = #{roleId,jdbcType=VARCHAR}
     where user_role_id = #{userRoleId,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="urMap">
 
     select user_role_id, user_id, role_id
     from user_role
     where user_role_id = #{userRoleId,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultMap="urMap">
 
     select user_role_id, user_id, role_id
     from user_role
