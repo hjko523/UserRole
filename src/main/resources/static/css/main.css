@@ -17,6 +17,7 @@ table, th, td {
 .user_table {
 	display: inline-block;
 	padding-left: 30px;
+	margin-top: 50px;
 	
 }
 

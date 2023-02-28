@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+      layout:decorate="~{layout/layout1}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 
-<link rel="stylesheet" href="/css/main.css" type="text/css">
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+</th:block>
 
 <style>
 
@@ -21,19 +25,8 @@ th {
 <body>
 
 
-<div class="wrapper">
-	<div class="left_navbar">
-		<ul>
-			<li><a href="/user/user_list" >사용자 관리</a></li>
-				<ul>
-					<li><a href="/user/user_add" >사용자 등록</a></li>
-				</ul>
-			<li><a href="/user/user_list" >사용자 권한 설정</a></li>
-			<li><a href="/user/user_list" >메뉴 권한 설정</a></li>
-			<li><a href="/user/user_list" >메뉴 설정</a></li>		
-		</ul>
-	</div>
-	
+<div layout:fragment="content">
+<div class="wrapper" >
 	
 	<div class="user_table">
 		<div class="table_sub">
@@ -76,6 +69,7 @@ th {
 		</table>
 	</div>
 	
+	</div>
 </div>	
 
 
