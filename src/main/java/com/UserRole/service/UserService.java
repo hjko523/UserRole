@@ -11,4 +11,8 @@ public interface UserService {
 	User findUserById(String id);
 
 	int addUser(User user, String roleId);
+	
+	int editUser(User user, String roleId);
+
+	int updateUser(User user, String roleId);
 }

@@ -71,7 +71,7 @@
         JOIN user_role ur on u.user_id = ur.user_id
         JOIN role r on r.role_id = ur.role_id
 
-       
+        ORDER BY create_time DESC
   </select>
   
    <select id="findUserById" parameterType="string" resultMap="userMap">  
@@ -80,7 +80,8 @@
 				u.user_name, 
 				u.department, 
 				u.email, 
-				u.mobile,				u.state, 
+				u.mobile,				
+				u.state, 
 				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
 				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,

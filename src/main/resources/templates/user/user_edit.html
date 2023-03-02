@@ -34,6 +34,16 @@ input {
 	width: 305px;
 }
 
+/* validate 줄바꿈 */
+#add input +.error {
+	display:block; color:red;
+}
+
+
+#add select +.error {
+	display:block; color:red;
+}
+
 
 </style>
 
@@ -49,7 +59,7 @@ input {
 			<div class="table_title">
 				<h1>사용자 상세/수정</h1>
 			</div>
-			<form role="form" id="userEditForm" name="userEditForm">
+			<form  id="userEditForm" name="userEditForm">
 				<input type="hidden" th:value="${user.userId}">
 				<table width="500px">
 					<tr>
@@ -100,10 +110,121 @@ input {
 					<button>수정</button>
 				</div>
 			</form>
-		</div>
+		</div> <!-- userTable -->
 		
-</div>	
+	</div> <!-- wrapper -->	
 </div>
+
+
+<th:block layout:fragment="script">
+<!-- <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script> -->
+<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
+
+
+<script>
+
+
+$(document).ready(function () {
+	
+	/* 사용자 추가 */
+	
+	// phone input - 하이픈 자동 추가
+    $(document).on("keyup", "#mobile", function() {
+        console.log("#key up!")
+        $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+    });
+    
+
+     /* custom method
+         name: 추가할 메서드 이름
+         function: validation 처리 시 실제 동작 함수
+         value: 사용자가 입력한 값
+         element: validation이 체크되는 화면 요소
+         params: rule에서 작성한 검증 값
+         */
+
+     // 이메일 validator custom function
+     $.validator.addMethod("emChc", function(value, element, emChc){
+         var EmChc = new RegExp(emChc);
+         return EmChc.test(value);
+     });
+
+     // 휴대폰 validate custom function
+     $.validator.addMethod("regex", function(value, element, regex){
+         var regExp = new RegExp(regex);
+         return regExp.test(value);
+     });
+     
+
+	$("#userEditForm").validate({
+
+             rules: {            	
+                username: {
+                    required: true,
+                    rangelength: [3, 12],
+                },
+                department: "required",
+                mobile: {
+                    required: true,
+                    regex : "^01(?:0|1|[6-9])[-\\s]?\\d{3,4}[-\\s]?\\d{4}$",
+                    //isMobile: true
+                },
+                role: "required",
+                email: {
+                    required: true,
+                    emChc: "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.+[a-zA-Z]{2,3}$",
+                    //"^([a-zA-Z0-9_.+-])+\@([a-zA-Z0-9-])+\.+([a-zA-Z0-9]{2,4})+$",
+                    //"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/",
+                },           
+            },
+            messages: {        
+                username: {
+                    required: "비밀번호를 입력하세요",
+                    rangelength: jQuery.validator.format("3-12자 사이의 영어/한글을 입력하세요"),
+                    remote: jQuery.validator.format("{0} is already in use")
+                },
+                department:"부서를 선택하세요",
+                mobile: {
+                    required: "전화번호를 입력하세요",
+                    regex: "유효한 전화번호로 입력하세요"
+                    //isMobile: "유효한 전화번로를 입력하세요"
+                },
+                role: "역할을 선택하세요",
+                email: {
+                    required: "email 주소를 입력하세요",
+                    emChc: jQuery.validator.format("email 형식이 맞지 않습니다"),
+                    remote: jQuery.validator.format("{0} is already in use")
+                }
+            },
+            debug: false,  // 기본값: false 입력값이 유효해도 submit 하지 않음
+            // submitHandler : submit이벤트만 발생, 실제 form전송이 일어나지 않음 
+            submitHandler: function (form) {
+            	editForm(form);
+            }
+
+        });
+
+        function editForm(form) {
+        
+             $.ajax({
+                url: 'user_edit',
+                type: "post",
+                data: $(form).serialize(), 
+                success: function (result) {
+                	alert("수정 하였습니다.");
+                    //swal("사용자를 추가 했습니다", "", "success");
+                   // location.href="user_list";
+                    
+                }
+            }); 
+        }
+        
+})
+        
+</script>
+</th:block>
+
 	
 </body>
 </html>

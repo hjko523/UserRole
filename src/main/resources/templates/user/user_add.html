@@ -41,6 +41,7 @@ input {
 	width: 305px;
 }
 
+/* validate 줄바꿈 */
 #add input +.error {
 	display:block; color:red;
 }
@@ -168,8 +169,8 @@ $(document).ready(function () {
 
 	$("#add").validate({
 
-           /*  rules: {
-                loginId: {
+             rules: {
+            	 userId: {
                     required: true,
                     rangelength: [3, 12],
                 },
@@ -192,7 +193,7 @@ $(document).ready(function () {
                 },           
             },
             messages: {
-            	loginId: {
+            	userId: {
                     required: "아이디를 입력하세요",
                     rangelength: jQuery.validator.format("3-12자 사이의 영어/한글을 입력하세요"),
                     remote: jQuery.validator.format("{0} is already in use")
@@ -216,7 +217,7 @@ $(document).ready(function () {
                 }
             },
             debug: false,  // 기본값: false 입력값이 유효해도 submit 하지 않음
-            // submitHandler : submit이벤트만 발생, 실제 form전송이 일어나지 않음 */
+            // submitHandler : submit이벤트만 발생, 실제 form전송이 일어나지 않음 
             submitHandler: function (form) {
                addform(form);
             }
@@ -224,7 +225,7 @@ $(document).ready(function () {
         });
 
         function addform(form) {
-        	  swal("사용자를 추가 했습니다", "", "success");
+        
              $.ajax({
                 url: 'user_add',
                 type: "post",
@@ -232,6 +233,7 @@ $(document).ready(function () {
                 success: function (result) {
                 	alert("사용자를 추가 했습니다");
                     //swal("사용자를 추가 했습니다", "", "success");
+                    location.reload();
                     
                 }
             }); 

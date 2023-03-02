@@ -35,6 +35,7 @@ public class UserController {
 	@GetMapping(value={"/","/user/user_list"})
 	public String main(Model model) {
 		
+		log.info("정보를 가져옵니다");
 		List<User> userList = userService.findUsers();
 		log.info(userList.toString());
 		
@@ -48,8 +49,11 @@ public class UserController {
 	public String userAdd(ModelMap map) {
 		
 		 log.info("정보를 가져옵니다");
-		 List<Role> roleList = roleService.findRole();     // role select list
+		 
+		 // 역할 리스트 가져오기	
+		 List<Role> roleList = roleService.findRole();     
 	     map.addAttribute("roleList", roleList);	
+	     
 	 	 log.info(roleList.toString());
 		
 		return "user/user_add";
@@ -63,7 +67,7 @@ public class UserController {
         log.info("user={}", user);
        
         int result = userService.addUser(user, roleId);
-    
+            
         return result;
     }
 	
@@ -77,6 +81,19 @@ public class UserController {
 			log.info(user.toString());
 		 
 		 return "user/user_edit";
+    }
+	
+	// 사용자 수정
+	@PostMapping("/user/user_edit")
+    @ResponseBody
+    public int editUser( User user, String roleId) {
+
+        log.info("# 사용자 등록 페이지로 이동");
+        log.info("user={}", user);
+       
+        int result = userService.updateUser(user, roleId);
+            
+        return result;
     }
 }
 

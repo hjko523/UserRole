@@ -1,5 +1,6 @@
 package com.UserRole.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,10 +43,42 @@ public class UserServiceImpl implements UserService{
 		return userMapper.findUserById(id);
 	}
 
+	// 사용자 등록
 	@Override
 	public int addUser(User user, String roleId) {
 		
 		log.info("impl 진입");
+		int result1 = userMapper.addUser(user);
+		user.setCreateTime(Calendar.getInstance().getTime()); // 생성시간
+		
+		UserRole ur = new UserRole();
+		ur.setUserId(user.getUserId());
+		int result2 = urMapper.addUr(ur);
+		
+		int result;
+		if((result1 == 1) && (result2 == 1))
+			result = 1;
+		else
+			result = 0;
+		
+		log.info("result", result);
+		
+		return result;
+	}
+	
+	// 사용자 수정
+	@Override
+	public int updateUser(User user, String roleId) {
+		
+		log.info("impl 진입");
+		
+		// 기존 user 가져오기
+        User u = userMapper.findUserById(user.getUserId());
+		
+        user.setModifyTime(Calendar.getInstance().getTime()); // 수정시간
+        
+        if(!user.getId().equals(u.getOrganizeId()))
+		
 		int result1 = userMapper.addUser(user);
 		
 		UserRole ur = new UserRole();
@@ -58,7 +91,10 @@ public class UserServiceImpl implements UserService{
 		else
 			result = 0;
 		
+		log.info("result", result);
+		
 		return result;
 	}
+
 
 }

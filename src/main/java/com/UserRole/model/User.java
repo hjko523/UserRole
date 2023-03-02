@@ -1,9 +1,10 @@
 package com.UserRole.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
-@Getter @Setter
+import lombok.Data;
+
+@Data
 public class User {
 
 	private String userId;
@@ -21,10 +22,10 @@ public class User {
 	
 	private String lastLoginTime;
 	
-	private String createTime;
+	private Date createTime;
 	
-	private String modifyTime;
+	private Date modifyTime;
 	
-	private String roleName;
+	private Date roleName;
 	
 }
