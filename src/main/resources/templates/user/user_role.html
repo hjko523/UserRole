@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+      layout:decorate="~{layout/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+</th:block>
+
+<th:block layout:fragment="css">
+<style>
+
+
+
+</style>
+
+</th:block>
+
+<body>
+
+<div layout:fragment="content">
+
+	<div class="wrapper">		
+		
+		<div class="userRole">
+			<h1>사용자 권한 설정</h1>
+		</div>
+		
+		<div class="">
+		
+		</div>
+		
+		<div class="">
+		
+		</div>
+		
+		
+		
+	</div> <!-- wrapper -->	
+</div>
+
+
+<th:block layout:fragment="script">
+<!-- <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script> -->
+<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
+
+
+<script>
+
+
+
+	function deleteUser(){
+		
+	}
+
+
+$(document).ready(function () {
+	
+	
+
+        function () {
+        
+             $.ajax({
+                url: '',
+                type: "post",
+                data: $(form).serialize(), 
+                success: function (result) {
+                	
+                	if (result !== 0){
+                		alert("수정 하였습니다.");
+                	// location.href="user_list";
+                	} else
+                		alert("오류가 발생하였습니다, 관리자에게 문의하세요");
+                    //swal("사용자를 추가 했습니다", "", "success");
+                   
+                    
+                }
+            }); 
+        }
+        
+})
+        
+</script>
+</th:block>
+
+	
+</body>
+</html>
+

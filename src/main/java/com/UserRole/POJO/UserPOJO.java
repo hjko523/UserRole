@@ -1,9 +1,9 @@
-package com.UserRole.model;
+package com.UserRole.POJO;
 
 import lombok.Data;
 
 @Data
-public class User {
+public class UserPOJO {
 
 	private String userId;
 	
@@ -22,6 +22,9 @@ public class User {
 	private String createTime;
 	
 	private String modifyTime;
+	
+	
+	private String roleName;
 	
 
 	

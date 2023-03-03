@@ -35,6 +35,12 @@
 		<include refid="from_xxx" />
 	</select>
 	
+	<select id="findByRoleId" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE role_name = #{roleName}
+	</select>
+	
 	
   <update id="updateByPrimaryKey" parameterType="com.UserRole.model.Role">
    

@@ -1,6 +1,5 @@
 package com.UserRole.service.impl;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.UserRole.POJO.UserPOJO;
+import com.UserRole.mapper.RoleMapper;
 import com.UserRole.mapper.UserMapper;
 import com.UserRole.mapper.UserRoleMapper;
 import com.UserRole.model.User;
@@ -26,17 +27,22 @@ public class UserServiceImpl implements UserService{
 	
 
 	@Autowired
+	private RoleMapper roleMapper;
+	
+
+	@Autowired
 	private UserRoleMapper urMapper;
 
 
 	
 	@Override
-	public List<User> findUsers() {
+	public List<UserPOJO> findUsers() {			
+		
 		return userMapper.findUsers();
 	}
 
 	@Override
-	public User findUserById(String id) {	
+	public UserPOJO findUserById(String id) {	
 		
 		log.info("impl 진입");
 		
@@ -48,11 +54,15 @@ public class UserServiceImpl implements UserService{
 	public int addUser(User user, String roleId) {
 		
 		log.info("impl 진입");
-		int result1 = userMapper.addUser(user);
-		user.setCreateTime(Calendar.getInstance().getTime()); // 생성시간
 		
+		// user 데이터 insert		
+		//user.setCreateTime(Calendar.getInstance().getTime()); // 생성시간
+		int result1 = userMapper.addUser(user);
+		
+		// user_role 데이터 insert
 		UserRole ur = new UserRole();
 		ur.setUserId(user.getUserId());
+		ur.setRoleId(roleId);
 		int result2 = urMapper.addUr(ur);
 		
 		int result;
@@ -70,28 +80,48 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int updateUser(User user, String roleId) {
 		
-		log.info("impl 진입");
+		log.info("Impl : updateUser");
+		log.info("user={}", user);
 		
-		// 기존 user 가져오기
-        User u = userMapper.findUserById(user.getUserId());
+		// 기존 user정보 가져오기
+		UserPOJO u = userMapper.findUserById(user.getUserId());  
+		log.info("기존 ={}", u);
+              
+		log.info("기존 role ={}", u.getRoleName());
+		log.info("new role ={}", roleId);
+        // 기존 user와 update user의 role이 같지 않을경우 user_role과 user update  
+		int result = 0;
 		
-        user.setModifyTime(Calendar.getInstance().getTime()); // 수정시간
-        
-        if(!user.getId().equals(u.getOrganizeId()))
+		if(!u.getRoleName().equals(roleId)) {
+			
+			UserRole ur = new UserRole();
+			ur.setUserId(user.getUserId());
+			ur.setRoleId(roleId);
+			
+			result = urMapper.updateUr(ur);
+			
+			// user_role update가 되면 user도 update
+			if(result == 1) {
+				userMapper.updateUser(user);
+				log.info("result={}", result);
+				
+				return result;
+				
+			} else {
+				
+				log.info("result={}", result);
+				return result;
+				
+			}
+			
+		} else {	// 아닐경우 user만 업데이트
+			result = userMapper.updateUser(user);
+		}
 		
-		int result1 = userMapper.addUser(user);
+		//user.setModifyTime(Calendar.getInstance().getTime()); // 수정시간
 		
-		UserRole ur = new UserRole();
-		ur.setUserId(user.getUserId());
-		int result2 = urMapper.addUr(ur);
 		
-		int result;
-		if((result1 == 1) && (result2 == 1))
-			result = 1;
-		else
-			result = 0;
-		
-		log.info("result", result);
+		log.info("result={}", result);
 		
 		return result;
 	}

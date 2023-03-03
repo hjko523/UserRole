@@ -4,14 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.UserRole.POJO.UserPOJO;
 import com.UserRole.model.User;
 
 @Mapper
 public interface UserMapper {
 
-	List<User> findUsers();
+	List<UserPOJO> findUsers();
 
-	User findUserById(String id);
+	UserPOJO findUserById(String id);
 
 	int addUser(User user);
+	
+	int updateUser(User user);
 }

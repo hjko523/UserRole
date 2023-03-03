@@ -4,8 +4,20 @@
 <mapper namespace="com.UserRole.mapper.UserMapper">
 
   <resultMap id="userMap" type="com.UserRole.model.User">    
-    <result column="user_id" 			property="userId" />
- 
+    <result column="user_id" 			property="userId" /> 
+    <result column="user_name"  		property="username" />
+    <result column="department" 		property="department" />
+    <result column="email"  			property="email" />
+    <result column="mobile" 			property="mobile" />
+    <result column="state"  			property="state" />
+    <result column="last_login_time"  	property="lastLoginTime" />
+    <result column="create_time"  		property="createTime" />
+    <result column="modify_time"  		property="modifyTime" />    
+  </resultMap>
+  
+  
+    <resultMap id="UPMap" type="com.UserRole.POJO.UserPOJO">    
+    <result column="user_id" 			property="userId" /> 
     <result column="user_name"  		property="username" />
     <result column="department" 		property="department" />
     <result column="email"  			property="email" />
@@ -31,12 +43,17 @@
   </resultMap>
   
   
-  <insert id="addUser" parameterType="com.UserRole.model.User">
-
+    <insert id="insert" parameterType="com.UserRole.model.User">
    
     INSERT INTO 	user (user_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time)
     VALUES  		(#{userId}, #{username}, #{department}, #{email}, #{mobile}, #{state}, #{lastLoginTime}, #{createTime}, #{modifyTime})
-
+    
+  </insert>
+  
+  <insert id="addUser" parameterType="com.UserRole.model.User">
+   
+    INSERT INTO 	user (user_id, user_name, department, email, mobile, state)
+    VALUES  		(#{userId}, #{username}, #{department}, #{email}, #{mobile}, #{state})
     
   </insert>
   
@@ -53,17 +70,16 @@
   </sql>
   
   
-  <select id="findUsers" parameterType="string" resultMap="userMap">  
-		SELECT  u.user_id, 
-			
+  <select id="findUsers" parameterType="string" resultMap="UPMap">  
+		SELECT  u.user_id, 			
 				u.user_name, 
 				u.department, 
 				u.email, 
 				u.mobile, 
-				u.state, 
-				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
+				u.state, 			
+			    DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
-				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time, 
 				r.role_name
 						
 	from user u	
@@ -71,10 +87,10 @@
         JOIN user_role ur on u.user_id = ur.user_id
         JOIN role r on r.role_id = ur.role_id
 
-        ORDER BY create_time DESC
+        ORDER BY create_time ASC
   </select>
   
-   <select id="findUserById" parameterType="string" resultMap="userMap">  
+   <select id="findUserById" parameterType="string" resultMap="UPMap">  
 		SELECT  u.user_id, 
 				
 				u.user_name, 
@@ -96,19 +112,18 @@
        
   </select>
   
-  <update id="updateByPrimaryKey" parameterType="com.UserRole.model.User">
+  <update id="updateUser" parameterType="com.UserRole.model.User"> 	
 
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      last_login_time = #{lastLoginTime,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=VARCHAR},
-      modify_time = #{modifyTime,jdbcType=VARCHAR}
-    where user_id = #{userId,jdbcType=VARCHAR}
+    update 	user
+    set 	user_name = #{username},
+	      	department = #{department},
+	     	email = #{email},
+	      	mobile = #{mobile},
+	      	state = #{state}	    	
+	      
+    where 	user_id = #{userId}
   </update>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" >
  
     select user_id, user_name, department, email, mobile, state, last_login_time, create_time, 

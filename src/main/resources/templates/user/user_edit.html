@@ -60,7 +60,7 @@ input {
 				<h1>사용자 상세/수정</h1>
 			</div>
 			<form  id="userEditForm" name="userEditForm">
-				<input type="hidden" th:value="${user.userId}">
+				<input type="hidden" id="userId" name="userId" th:value="${user.userId}">
 				<table width="500px">
 					<tr>
 						<th width="30%">아이디</th>
@@ -85,12 +85,12 @@ input {
 					<tr>
 						<th>역할</th>
 						<td>	
-							<select name="role">
-		                        <option value="경영" th:selected="${user.roleName}=='관리자'">관리자</option>
-		                        <option value="운영" th:selected="${user.roleName}=='부관리자'">부관리자</option>
-		                        <option value="기획" th:selected="${user.roleName}=='직원'">직원</option>
-		                        <option value="마케팅" th:selected="${user.roleName}=='제한'">제한</option>
-		                        <option value="관계사" th:selected="${user.roleName}=='관계사'">관계사</option>
+							<select id="roleId" name="roleId">					
+						 		<option value="manager" th:selected="${user.roleName}=='관리자'">관리자</option>
+		                        <option value="assitant" th:selected="${user.roleName}=='부관리자'">부관리자</option>
+		                        <option value="general" th:selected="${user.roleName}=='직원'">직원</option>
+		                        <option value="limitation" th:selected="${user.roleName}=='제한'">제한</option>
+		                        <option value="visitor" th:selected="${user.roleName}=='관계사'">관계사</option>
 		                    </select>
 		               </td>
 					</tr>	
@@ -106,8 +106,9 @@ input {
 				</table>
 				
 				<div class="add_buttonZone" >
-					<button type="button">취소</button>
-					<button>수정</button>
+					<button type="button" onclick="deleteUser();">삭제</button>
+					<button type="button" onclick="location.href='/user/user_list'">목록</button>
+					<button type="submit">수정</button>
 				</div>
 			</form>
 		</div> <!-- userTable -->
@@ -123,6 +124,12 @@ input {
 
 
 <script>
+
+
+
+	function deleteUser(){
+		
+	}
 
 
 $(document).ready(function () {
@@ -162,7 +169,7 @@ $(document).ready(function () {
              rules: {            	
                 username: {
                     required: true,
-                    rangelength: [3, 12],
+                    rangelength: [2, 12],
                 },
                 department: "required",
                 mobile: {
@@ -212,9 +219,14 @@ $(document).ready(function () {
                 type: "post",
                 data: $(form).serialize(), 
                 success: function (result) {
-                	alert("수정 하였습니다.");
+                	
+                	if (result !== 0){
+                		alert("수정 하였습니다.");
+                	// location.href="user_list";
+                	} else
+                		alert("오류가 발생하였습니다, 관리자에게 문의하세요");
                     //swal("사용자를 추가 했습니다", "", "success");
-                   // location.href="user_list";
+                   
                     
                 }
             }); 

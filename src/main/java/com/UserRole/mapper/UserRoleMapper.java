@@ -8,6 +8,8 @@ import com.UserRole.model.UserRole;
 public interface UserRoleMapper {
 
 	int addUr(UserRole ur);
+	
+	int updateUr(UserRole ur);
     
 	
 }

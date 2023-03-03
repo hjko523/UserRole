@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.UserRole.POJO.UserPOJO;
 import com.UserRole.model.Role;
 import com.UserRole.model.User;
 import com.UserRole.service.RoleService;
@@ -36,7 +37,7 @@ public class UserController {
 	public String main(Model model) {
 		
 		log.info("정보를 가져옵니다");
-		List<User> userList = userService.findUsers();
+		List<UserPOJO> userList = userService.findUsers();
 		log.info(userList.toString());
 		
 		model.addAttribute("userList", userList);
@@ -65,6 +66,7 @@ public class UserController {
 
         log.info("# 사용자 등록 페이지로 이동");
         log.info("user={}", user);
+        log.info("role={}", roleId);
        
         int result = userService.addUser(user, roleId);
             
@@ -76,9 +78,13 @@ public class UserController {
 	@GetMapping("/user/load_edit")
     public String editDataLoad(@RequestParam("userId") String userId, ModelMap map) {
 		
-	     User user = userService.findUserById(userId);		 
+	     UserPOJO user = userService.findUserById(userId);		 
 		 map.addAttribute("user", user);
-			log.info(user.toString());
+		 log.info(user.toString());
+		 
+		// 역할 리스트 가져오기	
+				 List<Role> roleList = roleService.findRole();     
+			     map.addAttribute("roleList", roleList);	
 		 
 		 return "user/user_edit";
     }
@@ -95,5 +101,16 @@ public class UserController {
             
         return result;
     }
+	
+	
+	
+	
+	// 사용자 등록
+	@GetMapping(value="/user/user_role")
+	public String userRole() {
+		
+		
+		return "user/user_role";
+	}
 }
 
