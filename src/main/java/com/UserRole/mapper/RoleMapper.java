@@ -9,8 +9,8 @@ import com.UserRole.model.Role;
 @Mapper
 public interface RoleMapper {
 
-	List<Role> findRole();
-	
-	Role findByRoleId(String roleId);
+	List<Role> findRole();	
 
+	Role findRoleById(String roleId);
+	
 }

@@ -10,4 +10,6 @@ import com.UserRole.model.Role;
 public interface RoleService {
 
     List<Role> findRole();
+    
+    Role findRoleById(String roleId);
 }

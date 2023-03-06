@@ -10,12 +10,35 @@
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
   
+  
+  
   <insert id="addUr" parameterType="com.UserRole.model.UserRole">
 
 	INSERT INTO 	user_role (user_role_id, user_id, role_id)
 	VALUES  		(#{userRoleId}, #{userId},#{roleId})
 	
   </insert>
+  
+  
+    <sql id="find_xxx">
+  		<![CDATA[
+  		select user_role_id, user_id, role_id
+  		]]>
+  </sql>
+  
+  
+  <sql id="from_xxx">
+  <![CDATA[
+  		from user_role
+  		]]>
+  </sql>  
+  
+  
+  <select id="FindUserByRoleId" parameterType="java.lang.String" resultMap="urMap">
+  		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+  		WHERE role_id = #{roleId}
+  </select>
   
   <update id="updateUr" parameterType="com.UserRole.model.UserRole">
   	UPDATE user_role

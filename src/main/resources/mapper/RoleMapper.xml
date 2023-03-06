@@ -7,20 +7,21 @@
     <result column="role_id"  	property="roleId" />
     <result column="role_name"  property="roleName" />
     <result column="state"  	property="state" />
+    <result column="description"  	property="description" />
   </resultMap>
 
   
   <insert id="insert" parameterType="com.UserRole.model.Role">
    
-    insert into role (role_id, role_name, state
+    insert into role (role_id, role_name, state, description
       )
-    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
+    values (#{roleId}, #{roleName}, #{state}, #{description}
       )
   </insert>
   
   	<sql id="find_xxx">
 	    <![CDATA[
-        select role_id, role_name, state
+        select role_id, role_name, state, description
         ]]>
 	</sql>
 	
@@ -35,10 +36,10 @@
 		<include refid="from_xxx" />
 	</select>
 	
-	<select id="findByRoleId" parameterType="string" resultMap="roleMap">
+	<select id="findRoleById" parameterType="string" resultMap="roleMap">
 		<include refid="find_xxx" />
 		<include refid="from_xxx" />
-		WHERE role_name = #{roleName}
+		WHERE role_id = #{roleId}
 	</select>
 	
 	

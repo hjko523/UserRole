@@ -126,5 +126,17 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	@Override
+	public User FindUserByRoleId(String roleId) {
+		
+		log.info("impl");
+		log.info("roleId={}", roleId);
+		
+		String userId = urMapper.FindUserByRoleId(roleId);
+		log.info("userId={}", userId);
+	
+		return null;
+	}
+
 
 }

@@ -11,6 +11,7 @@ public class Role {
 	
 	private Integer state;
 	
+	private String description;
 
 	
 }

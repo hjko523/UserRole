@@ -15,4 +15,6 @@ public interface UserService {
 
 
 	int updateUser(User user, String roleId);
+
+	User FindUserByRoleId(String roleId);
 }

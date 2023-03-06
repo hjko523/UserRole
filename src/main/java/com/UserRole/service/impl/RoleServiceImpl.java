@@ -27,6 +27,13 @@ public class RoleServiceImpl implements RoleService{
 		
 		return roleMapper.findRole();
 	}
+
+
+	@Override
+	public Role findRoleById(String roleId) {
+		// TODO Auto-generated method stub
+		return roleMapper.findRoleById(roleId);
+	}
 	
 
 

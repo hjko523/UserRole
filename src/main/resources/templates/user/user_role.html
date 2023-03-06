@@ -14,7 +14,30 @@
 <th:block layout:fragment="css">
 <style>
 
+th,td {
+ width: 100px;
+ }
+ 
+table {
+  display: inline-block;
+  }
 
+.role_info {
+	height: 250px;
+
+}
+
+
+
+.current {
+  display: inline-block;
+  width: 100px;
+  padding: 0 30px;
+}
+
+select {
+	width: 100px;
+}
 
 </style>
 
@@ -26,12 +49,63 @@
 
 	<div class="wrapper">		
 		
-		<div class="userRole">
+		<div class="userRole_title">
 			<h1>사용자 권한 설정</h1>
 		</div>
 		
-		<div class="">
-		
+		<div class="role_info" >
+			<table class="roleTable">
+				
+				
+			</table>	
+			
+			<table class="roleDetail">
+				<tr>
+					<th>권한명</th>
+					<th>상태</th>
+					<th>설명</th>
+				</tr>
+				
+				<tr th:each="r : ${roleList}" >
+					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]])"></td>
+					<td th:text="${r.state}"></td>
+					<td th:text="${r.description}"></td>
+				</tr>
+				
+			</table>	
+		</div>
+			
+		<div class="user_info">
+			<table class="">
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>	
+			
+			<div class="current">
+				<p></p>
+				<select>
+				</select>
+			</div>
+			<table class="">
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>권한</th>					
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>	
+			
 		</div>
 		
 		<div class="">
@@ -54,16 +128,34 @@
 
 
 
-	function deleteUser(){
+
+	function clickRole(data){	
+	
+		var roleId = data;
+		console.log(roleId);
+		 
+	
+		$.ajax({
+            url: 'userRole_info',
+            type: "post",
+            data: {roleId:roleId}, 
+            done: function (data) {            	
+            
+  				alert("ajax")
+
+               
+            }
+         })
+		  
 		
-	}
-
-
+	};
+	
+	
 $(document).ready(function () {
 	
 	
 
-        function () {
+        function clickRole(data) {
         
              $.ajax({
                 url: '',
