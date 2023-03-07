@@ -105,7 +105,7 @@ public class UserController {
 	
 	
 	
-	// 사용자 등록
+	// 사용자 권한
 	@GetMapping(value="/user/user_role")
 	public String userRole(ModelMap map) {
 		
@@ -117,7 +117,7 @@ public class UserController {
 	}
 	
 	
-	// 사용자 등록
+	// 사용자 권한 화면
 	@PostMapping(value="/user/userRole_info")    
 	public String roleInfo(@RequestParam("roleId") String roleId, Model model) {
 		

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="ur_info" th:fragment="ur">
-	<table>
-		<tr>
-			<th>아이디</th>
-			<th>이름</th>
-	
-		</tr>
-		 <tr id="urResult" th:each="urList : ${urList}">
-			<td th:text="${urList.userId}"></td>
-			<td th:text="${urList.username}"></td>
-		</tr> 
-	</table>
+<div class="urInfo_table" th:fragment="ur">
+		<table>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+
+			</tr>
+			<tr id="urResult" th:each="urList : ${urList}">
+				<td th:text="${urList.userId}"></td>
+				<td th:text="${urList.username}"></td>
+			</tr>
+		</table>
 </div>
+
 </html>

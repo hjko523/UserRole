@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 
-<th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-</th:block>
+
 
 <th:block layout:fragment="css">
+
 <style>
 
 th,td {
@@ -21,19 +20,6 @@ th,td {
 table {
   display: inline-block;
   }
-
-.role_info {
-	height: 250px;
-
-}
-
-
-
-.current {
-  display: inline-block;
-  width: 100px;
-  padding: 0 30px;
-}
 
 select {
 	width: 100px;
@@ -74,32 +60,44 @@ select {
 				
 			</table>	
 		</div>
-			
-		<div class="user_info"th:replace="~{user/user_role_frag:: ur}"></div>
-			
-			<div class="current">
+
+		<div class="userRole_info test">
+
+			<div class="urInfo test">
+				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
+				<div class="urInfo_table" th:replace="~{user/user_role_frag:: ur}">
+					
+				</div>
+			</div>
+
+			<div class="selInfo test">
 				<p></p>
 				<select>
 				</select>
 			</div>
-			<table class="">
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>권한</th>					
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>	
 			
+			<div class="NoUrInfo test">
+				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
+				<div class="NoUrInfo_table">
+					<table>
+						<tr>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>권한</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
+
+			
 		
-		<div class="">
-		
-		</div>
+
 		
 		
 		
@@ -123,6 +121,7 @@ select {
 		var roleId = data;
 		console.log(roleId);
 		 
+		$(".urInfo_table").val('');
 	
 		$.ajax({
             url: 'userRole_info',
@@ -131,7 +130,7 @@ select {
             async: false,
             success: function (data) {            	
             	
-            	$(".ur_info").replaceWith(data);
+            	$(".urInfo_table").replaceWith(data);
            
  
                
