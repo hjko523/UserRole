@@ -111,6 +111,30 @@
 		WHERE u.user_id=#{userId}
        
   </select>
+    
+  
+  
+     <select id="findUserList" parameterType="string" resultMap="UPMap">  
+		SELECT  u.user_id, 
+				
+				u.user_name, 
+				u.department, 
+				u.email, 
+				u.mobile,				
+				u.state, 
+				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
+				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
+				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+				r.role_name
+						
+		FROM user u	
+	
+	        JOIN user_role ur on u.user_id = ur.user_id
+	        JOIN role r on r.role_id = ur.role_id
+	
+		WHERE ur.role_id=#{roleId}
+       
+  </select>
   
   <update id="updateUser" parameterType="com.UserRole.model.User"> 	
 

@@ -9,12 +9,11 @@ public interface UserService {
 		
 	List<UserPOJO> findUsers();
 
-	UserPOJO findUserById(String id);
+	UserPOJO findUserById(String id);		
 
 	int addUser(User user, String roleId);
 
+	int updateUser(User user, String roleId);	
 
-	int updateUser(User user, String roleId);
-
-	User FindUserByRoleId(String roleId);
+	List<UserPOJO> findUserList(String roleId);
 }

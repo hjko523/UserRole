@@ -13,8 +13,14 @@ public interface UserMapper {
 	List<UserPOJO> findUsers();
 
 	UserPOJO findUserById(String id);
+	
+	List<UserPOJO> findUserListById(List<String> id);
 
 	int addUser(User user);
 	
 	int updateUser(User user);
+
+	List<UserPOJO> findUserList(String roleId);
+
+	
 }

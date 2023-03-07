@@ -118,25 +118,19 @@ public class UserController {
 	
 	
 	// 사용자 등록
-	@PostMapping(value="/user/userRole_info")
-    @ResponseBody
-	public String roleInfo(@RequestParam("roleId") String roleId, ModelMap map) {
+	@PostMapping(value="/user/userRole_info")    
+	public String roleInfo(@RequestParam("roleId") String roleId, Model model) {
 		
 		 log.info("roleId={}", roleId);
 		 
-		 User user = new User();
-		 user = userService.FindUserByRoleId(roleId);
+		List<UserPOJO> user  = userService.findUserList(roleId);
+		
+		model.addAttribute("urList", user);
+	 
+		log.info("user={}", user);
 		 
 		 
-			/*
-			 * // 역할 리스트 가져오기 Role role = roleService.findRoleById(roleId); //
-			 * map.addAttribute("role", role); map.put("roleName", role.getRoleName());
-			 * map.put("state", role.getState()); map.put("description",
-			 * role.getDescription()); log.info("roleName={}", role.getRoleName());
-			 */
-		 
-		 
-		return "/user/userRole_info";
+		return "/user/user_role_frag";
 	}
 }
 

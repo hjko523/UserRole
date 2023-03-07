@@ -34,11 +34,12 @@
   </sql>  
   
   
-  <select id="FindUserByRoleId" parameterType="java.lang.String" resultMap="urMap">
-  		<include refid="find_xxx" />
+  <select id="FindUserIdByRoleId" parameterType="java.lang.String" resultType="String">
+  		SELECT user_id
 		<include refid="from_xxx" />
   		WHERE role_id = #{roleId}
   </select>
+  
   
   <update id="updateUr" parameterType="com.UserRole.model.UserRole">
   	UPDATE user_role

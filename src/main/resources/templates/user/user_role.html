@@ -75,18 +75,7 @@ select {
 			</table>	
 		</div>
 			
-		<div class="user_info">
-			<table class="">
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-					
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>	
+		<div class="user_info"th:replace="~{user/user_role_frag:: ur}"></div>
 			
 			<div class="current">
 				<p></p>
@@ -139,10 +128,12 @@ select {
             url: 'userRole_info',
             type: "post",
             data: {roleId:roleId}, 
-            done: function (data) {            	
-            
-  				alert("ajax")
-
+            async: false,
+            success: function (data) {            	
+            	
+            	$(".ur_info").replaceWith(data);
+           
+ 
                
             }
          })
