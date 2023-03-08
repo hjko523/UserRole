@@ -40,10 +40,10 @@ select {
 		</div>
 		
 		<div class="role_info" >
-			<table class="roleTable">
+			<!-- <table class="roleTable">
 				
 				
-			</table>	
+			</table>	 -->
 			
 			<table class="roleDetail">
 				<tr>
@@ -65,15 +65,16 @@ select {
 
 			<div class="urInfo test">
 				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
-				<div class="urInfo_table" th:replace="~{user/user_role_frag:: ur}">
+				<div class="urInfo_table" th:replace="~{/user/frag_urInfo::ur}">
 					
 				</div>
 			</div>
 
 			<div class="selInfo test">
-				<p></p>
-				<select>
-				</select>
+				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
+				<div class="selInfo_table" th:replace="~{/user/frag_selInfo::sel}">
+					
+				</div>
 			</div>
 			
 			<div class="NoUrInfo test">
@@ -139,6 +140,13 @@ select {
 		  
 		
 	};
+	
+	function change_userRole(data){	
+		alert("hi");
+		
+		console.log(data);
+		//$(".selInfo_table").replaceWith(data);
+	}
 	
 	
 $(document).ready(function () {

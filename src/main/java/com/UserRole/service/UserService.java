@@ -14,6 +14,8 @@ public interface UserService {
 	int addUser(User user, String roleId);
 
 	int updateUser(User user, String roleId);	
+	
+	int deleteUser(String userId);	
 
 	List<UserPOJO> findUserList(String roleId);
 }

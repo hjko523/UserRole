@@ -128,6 +128,28 @@ input {
 
 
 	function deleteUser(){
+
+		
+		var val = $("#userId").val();
+		console.log(val);
+		
+		
+		$.ajax({
+            url: 'user_delete',
+            type: "post",
+            data: {userId: val}, 
+            success: function (result) {
+            	
+            	if (result !== 0){
+            		alert("삭제 되었습니다.");
+            	    location.href="user_list";
+            	} else
+            		alert("오류가 발생하였습니다, 관리자에게 문의하세요");
+                //swal("사용자를 추가 했습니다", "", "success");
+               
+                
+            }
+        }); 
 		
 	}
 

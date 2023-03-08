@@ -134,5 +134,11 @@ public class UserServiceImpl implements UserService{
 		return userMapper.findUserList(roleId);
 	}
 
+	@Override
+	public int deleteUser(String userId) {
+		
+		return userMapper.deleteUser(userId);
+	}
+
 
 }

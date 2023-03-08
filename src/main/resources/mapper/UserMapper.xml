@@ -148,18 +148,17 @@
     where 	user_id = #{userId}
   </update>
   
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" >
- 
-    select user_id, user_name, department, email, mobile, state, last_login_time, create_time, 
-    modify_time
-    from user
-    where user_id = #{userId,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" >
-
-    select user_id, user_name, department, email, mobile, state, last_login_time, create_time, 
-    modify_time
-    from user
-  </select>
+  <delete id="deleteUser" parameterType="String">
   
+  	 DELETE 	ur, u
+     FROM 		user_role ur
+            
+     JOIN 		user u on u.user_id = ur.user_id
+     JOIN 		role r on r.role_id = ur.role_id
+	        
+     WHERE 		ur.user_id = #{userId}
+     
+  </delete>
+  
+
  </mapper>

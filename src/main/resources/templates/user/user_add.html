@@ -91,7 +91,7 @@ input {
 					<tr>
 						<th>역할</th>
 						<td>	
-							<select name="role" id="role">
+							<select name="roleId" id="roleId">
 		                        <option value="">역할을 선택하세요</option>
 		                        <option th:each="role : ${roleList}" th:value="${role.roleId}" th:text="${role.roleName}"></option>
                              <!-- 
@@ -116,7 +116,7 @@ input {
 			
 				
 				<div class="add_buttonZone" >
-					<button type="button">취소</button>
+					<button type="button" onclick="location.href='/user/user_list'" >취소</button>
 					<button type="submit">등록</button>
 				</div>
 				
@@ -184,7 +184,7 @@ $(document).ready(function () {
                     regex : "^01(?:0|1|[6-9])[-\\s]?\\d{3,4}[-\\s]?\\d{4}$",
                     //isMobile: true
                 },
-                role: "required",
+                roleId: "required",
                 email: {
                     required: true,
                     emChc: "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.+[a-zA-Z]{2,3}$",
@@ -209,7 +209,7 @@ $(document).ready(function () {
                     regex: "유효한 전화번호로 입력하세요"
                     //isMobile: "유효한 전화번로를 입력하세요"
                 },
-                role: "역할을 선택하세요",
+                roleId: "역할을 선택하세요",
                 email: {
                     required: "email 주소를 입력하세요",
                     emChc: jQuery.validator.format("email 형식이 맞지 않습니다"),
@@ -226,6 +226,11 @@ $(document).ready(function () {
 
         function addform(form) {
         
+        	 var role = $("#roleId").val();
+        	 console.log(role);
+        	 var user = $("#userId").val();
+        	 console.log(user);
+        	
              $.ajax({
                 url: 'user_add',
                 type: "post",

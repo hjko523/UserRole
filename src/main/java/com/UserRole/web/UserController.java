@@ -64,7 +64,7 @@ public class UserController {
     @ResponseBody
     public int userAdd(@ModelAttribute("add") User user, String roleId) {
 
-        log.info("# 사용자 등록 페이지로 이동");
+        log.info("# 사용자 등록");
         log.info("user={}", user);
         log.info("role={}", roleId);
        
@@ -94,7 +94,7 @@ public class UserController {
     @ResponseBody
     public int editUser( User user, String roleId) {
 
-        log.info("# 사용자 등록 페이지로 이동");
+        log.info("# 사용자 등록 ");
         log.info("user={}", user);
        
         int result = userService.updateUser(user, roleId);
@@ -102,6 +102,19 @@ public class UserController {
         return result;
     }
 	
+	// 사용자 삭제
+	@PostMapping("/user/user_delete")
+    @ResponseBody
+    public int deleteUser(String userId) {
+
+        log.info("# 사용자 삭제 ");
+        log.info("user={}", userId);
+       
+        int result = userService.deleteUser(userId);
+            
+        return result;
+    }
+		
 	
 	
 	
@@ -130,7 +143,7 @@ public class UserController {
 		log.info("user={}", user);
 		 
 		 
-		return "/user/user_role_frag";
+		return "user/frag_urInfo";
 	}
 }
 
