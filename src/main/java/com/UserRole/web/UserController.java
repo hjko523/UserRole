@@ -157,15 +157,15 @@ public class UserController {
 	public int changeRole(String userId, String roleId) {
 		
 		log.info("사용자 권한 수정");
-		log.info("roleId={}", userId);
+		log.info("userId={}", userId);
 		log.info("roleName={}", roleId);
 		
 		
 		
-		//int result = urService.updateRole(userId, roleId);
+		int result = urService.updateRole(userId, roleId);
 		//log.info("result={}", result);
 		
-		return 0;
+		return result;
 		
 	}
 }

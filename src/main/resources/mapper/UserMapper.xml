@@ -27,6 +27,7 @@
     <result column="create_time"  		property="createTime" />
     <result column="modify_time"  		property="modifyTime" />    
     <result column="role_name"  		property="roleName" />
+    <result column="role_id"  			property="roleId" />
   </resultMap>
   
   <resultMap id="roleMap" type="com.UserRole.model.Role">    
@@ -80,7 +81,8 @@
 			    DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
 				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time, 
-				r.role_name
+				r.role_name,
+				r.role_id
 						
 	from user u	
 
@@ -101,7 +103,8 @@
 				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
 				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
-				r.role_name
+				r.role_name,
+				r.role_id
 						
 		FROM user u	
 	
@@ -125,7 +128,8 @@
 				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
 				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
 				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
-				r.role_name
+				r.role_name,
+				r.role_id
 						
 		FROM user u	
 	

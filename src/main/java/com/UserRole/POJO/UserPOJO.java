@@ -26,6 +26,8 @@ public class UserPOJO {
 	
 	private String roleName;
 	
+	private String roleId;
+	
 
 	
 }

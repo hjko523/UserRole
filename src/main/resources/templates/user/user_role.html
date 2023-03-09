@@ -146,6 +146,7 @@ select {
 				
 		$("#userId").html(data.userId);
 		$("#userId").attr("value", data.userId);
+		$("#changeBtn").attr("data-target", data.userId);
 		
 		$("#username").html(data.username);
 		$("#username").attr("value", data.username);
@@ -153,28 +154,33 @@ select {
 		// $("#roleName").html(data.roleName);
 		
 		console.log(data.roleName);
+				
+		$("#ur_select").val(data.roleId);
+	
 		
-		var select = $("#ur_select").val(data.roleName);	
+
 	}
 	
 	
+	
+$(document).ready(function () {
+	
 	// 해당 사용자의 권한 변경
-	function changeRole(form){
-
+	$("#changeBtn").click(function(){
+		
 		console.log("hi");
 		
-		var userId = $("#userId")[0];
-		var roleC = $("#roleC");
+		var userId = $(this).data("target"); // 돈터치
+		var roleId = $("#ur_select").val();
 		
-		var user = userId.value;		
-
-		console.log(userId);
-		console.log(user);
+		console.log(userId);// 돈터치
+		console.log(roleId);
 		
-		 $.ajax({
+		$.ajax({
              url: 'change_role',
              type: "post",
-             data: $(form).serialize(),
+             data: {userId : userId,
+            	 	roleId : roleId},
              success: function (result) {
              	
              	if (result !== 0){
@@ -187,9 +193,9 @@ select {
                  
              }
          });  
-	}
-$(document).ready(function () {
-	
+		
+	})
+
 	
 	
 /* 
