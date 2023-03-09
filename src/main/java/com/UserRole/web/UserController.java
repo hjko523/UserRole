@@ -18,6 +18,7 @@ import com.UserRole.POJO.UserPOJO;
 import com.UserRole.model.Role;
 import com.UserRole.model.User;
 import com.UserRole.service.RoleService;
+import com.UserRole.service.UserRoleService;
 import com.UserRole.service.UserService;
 
 @Controller
@@ -30,6 +31,10 @@ public class UserController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private UserRoleService urService;
+
 
 
 	// 사용자 목록
@@ -144,6 +149,24 @@ public class UserController {
 		 
 		 
 		return "user/frag_urInfo";
+	}
+	
+	// 사용자 권한 수정
+	@PostMapping(value="/user/change_role")    
+    @ResponseBody
+	public int changeRole(String userId, String roleId) {
+		
+		log.info("사용자 권한 수정");
+		log.info("roleId={}", userId);
+		log.info("roleName={}", roleId);
+		
+		
+		
+		//int result = urService.updateRole(userId, roleId);
+		//log.info("result={}", result);
+		
+		return 0;
+		
 	}
 }
 

@@ -8,6 +8,7 @@
     <result column="role_name"  property="roleName" />
     <result column="state"  	property="state" />
     <result column="description"  	property="description" />
+    <result column="num"  	property="num" />
   </resultMap>
 
   
@@ -34,6 +35,7 @@
 	<select id="findRole" parameterType="string" resultMap="roleMap">
 		<include refid="find_xxx" />
 		<include refid="from_xxx" />
+		ORDER BY num ASC
 	</select>
 	
 	<select id="findRoleById" parameterType="string" resultMap="roleMap">

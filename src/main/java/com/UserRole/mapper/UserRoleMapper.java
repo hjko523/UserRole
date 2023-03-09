@@ -9,7 +9,9 @@ public interface UserRoleMapper {
 
 	int addUr(UserRole ur);
 	
-	int updateUr(UserRole ur);	
+	int updateUr(UserRole ur);
+
+	int updateUr(String userId, String roleId);	
     
 	
 }

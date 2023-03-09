@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="selInfo_table" th:fragment="sel">
-	<!-- <div></div> -->
-	<!-- <div th:text="${urList.username}"></div> -->
-	<select>
-	</select>
+<div class="selInfo_table" th:fragment="sel">		
+	<div>
+		<p id="userId" name="userId" th:value="userId" ></p>
+		<p id="username" th:value="${username}"></p>
+	</div>	
+	<div>
+		<select id="ur_select" name="roleC">			
+			 <option></option>		
+			 <option th:each="r : ${roleList}" th:text="${r.roleName}" th:value="${r.roleName}"></option> 		
+		</select>
+		<button type="button" onclick="changeRole();">수정</button>
+	</div>
 </div>
 
 

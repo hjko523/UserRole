@@ -7,8 +7,8 @@
 				<th>이름</th>
 
 			</tr>
-			<tr id="urResult" th:each="urList : ${urList}" th:onclick="change_userRole([[${urList}]])">
-				<td th:text="${urList.userId}" th:id="${urList.userId}"></td>
+			<tr id="urResult" th:each="urList : ${urList}"th:onclick="change_userRole([[${urList}]])"> 
+			<td th:text="${urList.userId}" th:id="${urList.userId}"></td>
 				<td th:text="${urList.username}" ></td>
 			</tr>
 		</table>
