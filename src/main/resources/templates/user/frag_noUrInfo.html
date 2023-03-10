@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="NoUrInfo_table" th:fragment="no">
+		<table>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>권한</th>
+
+			</tr>
+			<tr id="urResult" th:each="noList : ${noList}" > 
+				<td th:text="${noList.userId}" th:id="${noList.userId}"></td>
+				<td th:text="${noList.username}" ></td>
+				<td th:text="${noList.roleName}" ></td>
+			</tr>
+		</table>
+</div>
+
+
+
+</html>

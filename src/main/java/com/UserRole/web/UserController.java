@@ -139,24 +139,48 @@ public class UserController {
 	@PostMapping(value="/user/userRole_info")    
 	public String roleInfo(@RequestParam("roleId") String roleId, Model model) {
 		
-		 log.info("roleId={}", roleId);
+		log.info("# roleInfo start ============================");
+		log.info("roleId={}", roleId);
 		 
 		List<UserPOJO> user  = userService.findUserList(roleId);
+		//List<UserPOJO> noUser  = userService.findNoUserList(roleId);
 		
 		model.addAttribute("urList", user);
+		//model.addAttribute("noList", noUser);
 	 
 		log.info("user={}", user);
+		//log.info("noUser={}", noUser);
 		 
 		 
-		return "user/frag_urInfo";
+		return "user/frag_urInfo" ;
 	}
+	
+	
+	// 사용자 권한 화면
+	@PostMapping(value="/user/noUserRole_info")    
+	public String noRoleInfo(@RequestParam("roleId") String roleId, Model model) {		
+		
+		log.info("# noRoleInfo start ============================");
+		log.info("roleId={}", roleId);		 
+		
+		List<UserPOJO> noUser  = userService.findNoUserList(roleId);		
+		
+		model.addAttribute("noList", noUser);	 
+	
+		log.info("noUser={}", noUser);
+		 
+		 
+		return "user/frag_noUrInfo" ;
+	}
+	
+	
 	
 	// 사용자 권한 수정
 	@PostMapping(value="/user/change_role")    
     @ResponseBody
 	public int changeRole(String userId, String roleId) {
 		
-		log.info("사용자 권한 수정");
+		log.info("# 사용자 권한 수정 ============================");
 		log.info("userId={}", userId);
 		log.info("roleName={}", roleId);
 		
@@ -168,5 +192,6 @@ public class UserController {
 		return result;
 		
 	}
+
 }
 

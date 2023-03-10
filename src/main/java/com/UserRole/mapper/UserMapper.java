@@ -22,6 +22,8 @@ public interface UserMapper {
 
 	List<UserPOJO> findUserList(String roleId);
 
+	List<UserPOJO> findNoUserList(String roleId);	
+
 	int deleteUser(String userId);
 
 	

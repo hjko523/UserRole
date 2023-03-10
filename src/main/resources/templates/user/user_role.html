@@ -70,28 +70,17 @@ select {
 				</div>
 			</div>
 
-			<div class="selInfo test">
+			<div class="selInfo test" id="selInfo">
 				<div class="table_title"><b>권한 수정</b></div>
 				<div class="selInfo_table" th:replace="~{/user/frag_selInfo::sel}">
 					
 				</div>
 			</div>
 			
-			<div class="NoUrInfo test">
-				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
-				<div class="NoUrInfo_table">
-					<table>
-						<tr>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>권한</th>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
+			<div class="NoUrInfo test" id="NoUrInfo">
+				<div class="table_title"><b>해당 권한 외 사용자 목록</b></div>
+				<div class="NoUrInfo_table" th:replace="~{/user/frag_noUrInfo::no}">
+					
 				</div>
 			</div>
 		</div>
@@ -107,7 +96,7 @@ select {
 
 
 <th:block layout:fragment="script">
-<!-- <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script> -->
+<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
 <script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
 <script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
 
@@ -120,28 +109,45 @@ select {
 	function clickRole(data){	
 	
 		var roleId = data;
-		console.log(roleId);
+		console.log("선택한 권한 : " +roleId);
 		 
 		$(".urInfo_table").val('');
-	
+		//$("#selInfo_table").load(location.href + " #selInfo_table")
+		
+		document.getElementById("userId").textContent = "";		
+		document.getElementById("username").textContent = "";
+		document.getElementById("ur_select").selectedIndex = 0;
+		
+		
 		$.ajax({
             url: 'userRole_info',
             type: "post",
             data: {roleId:roleId}, 
             async: false,
-            success: function (data) {            	
-            	
+            success: function (data) {         	
+            	            
             	$(".urInfo_table").replaceWith(data);
-           
-               
+            	
+                          
             }
          })
-		  
+        
+         $.ajax({
+            url: 'noUserRole_info',
+            type: "post",
+            data: {roleId:roleId}, 
+            async: false,
+            success: function (data) {         	           	
+            
+            	$(".NoUrInfo_table").replaceWith(data);           
+               
+            }
+         })	   
 		
 	};
 	
 	
-	// 해당 권한 사용자 출력
+	// 해당 권한 사용자 출력 - button onclick
 	function change_userRole(data){		
 				
 		$("#userId").html(data.userId);
@@ -151,13 +157,14 @@ select {
 		$("#username").html(data.username);
 		$("#username").attr("value", data.username);
 		
+		$("#userChangeRole").html(data.roleId);
+		$("#userChangeRole").attr("value", data.roleId);
+		
 		// $("#roleName").html(data.roleName);
-		
-		console.log(data.roleName);
+		console.log("----------------- ");
+		console.log("선택할 권한 :" +data.roleName);
 				
-		$("#ur_select").val(data.roleId);
-	
-		
+		$("#ur_select").val(data.roleId);		
 
 	}
 	
@@ -168,57 +175,52 @@ $(document).ready(function () {
 	// 해당 사용자의 권한 변경
 	$("#changeBtn").click(function(){
 		
-		console.log("hi");
+		console.log("----------------- 수정 클릭");
 		
-		var userId = $(this).data("target"); // 돈터치
-		var roleId = $("#ur_select").val();
+		var userId = $(this).data("target"); 
+		var roleId = $("#userChangeRole").val();
+		var changeRole = $("#ur_select").val();
 		
-		console.log(userId);// 돈터치
-		console.log(roleId);
+		console.log("변경할 사용자 :" + userId);
+		console.log("변경 전 권한 : " +roleId);
+		console.log("변경 후 권한 : " +changeRole);
+		
 		
 		$.ajax({
              url: 'change_role',
              type: "post",
              data: {userId : userId,
-            	 	roleId : roleId},
-             success: function (result) {
+            	 	roleId : changeRole},
+             success: function (result) {	// result : int
              	
              	if (result !== 0){
-             		alert("수정 하였습니다.");
-             	// location.href="user_list";
+             		//alert("수정 하였습니다.");
+             		swal("수정 하였습니다", "", "success");
+             		
+             		//console("noUser:" + roleId);
+             		$.ajax({
+                        url: 'noUserRole_info',
+                        type: "post",
+                        data: {roleId:roleId}, 
+                        async: false,
+                        success: function (data) {         	           	
+                        
+                        	$(".NoUrInfo_table").replaceWith(data); 
+                        	$("#"+userId).parent().remove();
+                           
+                        }
+                     })	   
+             		
              	} else
-             		alert("오류가 발생하였습니다, 관리자에게 문의하세요");
-                 //swal("사용자를 추가 했습니다", "", "success");
+             		//alert("오류가 발생하였습니다, 관리자에게 문의하세요");
+                      swal("오류 발생 / 수정되지 않음", "", "error");
                 
                  
              }
-         });  
+         });   
 		
 	})
-
 	
-	
-/* 
-        function clickRole(data) {
-        
-             $.ajax({
-                url: '',
-                type: "post",
-                data: $(form).serialize(), 
-                success: function (result) {
-                	
-                	if (result !== 0){
-                		alert("수정 하였습니다.");
-                	// location.href="user_list";
-                	} else
-                		alert("오류가 발생하였습니다, 관리자에게 문의하세요");
-                    //swal("사용자를 추가 했습니다", "", "success");
-                   
-                    
-                }
-            }); 
-        }
-         */
 })
         
 </script>

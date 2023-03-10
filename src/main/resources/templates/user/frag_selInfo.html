@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="selInfo_table" th:fragment="sel">		
+<div class="selInfo_table" id="selInfo_table" th:fragment="sel">		
 	<div>
 		<p id="userId" name="userId" th:value="userId" ></p>
 		<p id="username" th:value="${username}"></p>
+		<input type="hidden" id="userChangeRole">
 	</div>	
 	<div>
 		<select id="ur_select" name="roleC">			

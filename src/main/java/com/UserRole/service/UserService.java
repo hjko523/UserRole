@@ -18,4 +18,6 @@ public interface UserService {
 	int deleteUser(String userId);	
 
 	List<UserPOJO> findUserList(String roleId);
+
+	List<UserPOJO> findNoUserList(String roleId);
 }

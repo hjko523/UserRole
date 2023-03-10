@@ -135,10 +135,17 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+	public List<UserPOJO> findNoUserList(String roleId) {
+		
+		return userMapper.findNoUserList(roleId);
+	}
+	
+	@Override
 	public int deleteUser(String userId) {
 		
 		return userMapper.deleteUser(userId);
 	}
+
 
 
 }

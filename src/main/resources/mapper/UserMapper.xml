@@ -3,166 +3,203 @@
 
 <mapper namespace="com.UserRole.mapper.UserMapper">
 
-  <resultMap id="userMap" type="com.UserRole.model.User">    
-    <result column="user_id" 			property="userId" /> 
-    <result column="user_name"  		property="username" />
-    <result column="department" 		property="department" />
-    <result column="email"  			property="email" />
-    <result column="mobile" 			property="mobile" />
-    <result column="state"  			property="state" />
-    <result column="last_login_time"  	property="lastLoginTime" />
-    <result column="create_time"  		property="createTime" />
-    <result column="modify_time"  		property="modifyTime" />    
-  </resultMap>
-  
-  
-    <resultMap id="UPMap" type="com.UserRole.POJO.UserPOJO">    
-    <result column="user_id" 			property="userId" /> 
-    <result column="user_name"  		property="username" />
-    <result column="department" 		property="department" />
-    <result column="email"  			property="email" />
-    <result column="mobile" 			property="mobile" />
-    <result column="state"  			property="state" />
-    <result column="last_login_time"  	property="lastLoginTime" />
-    <result column="create_time"  		property="createTime" />
-    <result column="modify_time"  		property="modifyTime" />    
-    <result column="role_name"  		property="roleName" />
-    <result column="role_id"  			property="roleId" />
-  </resultMap>
-  
-  <resultMap id="roleMap" type="com.UserRole.model.Role">    
-    <result column="role_id"  	property="roleId" />
-    <result column="role_name"  property="roleName" />
-    <result column="state" 		property="state" />
-  </resultMap>
-   
-    
-  <resultMap id="userRoleMap" type="com.UserRole.model.UserRole">   
-    <result column="user_role_id" 	property="userRoleId" />
-    <result column="user_id" 		property="userId" />
-    <result column="role_id" 		property="roleId" />
-  </resultMap>
-  
-  
-    <insert id="insert" parameterType="com.UserRole.model.User">
-   
-    INSERT INTO 	user (user_id, user_name, department, email, mobile, state, last_login_time, create_time, modify_time)
-    VALUES  		(#{userId}, #{username}, #{department}, #{email}, #{mobile}, #{state}, #{lastLoginTime}, #{createTime}, #{modifyTime})
-    
-  </insert>
-  
-  <insert id="addUser" parameterType="com.UserRole.model.User">
-   
-    INSERT INTO 	user (user_id, user_name, department, email, mobile, state)
-    VALUES  		(#{userId}, #{username}, #{department}, #{email}, #{mobile}, #{state})
-    
-  </insert>
-  
-  <sql id="find_xxx">
+	<resultMap id="userMap" type="com.UserRole.model.User">
+		<result column="user_id" property="userId" />
+		<result column="user_name" property="username" />
+		<result column="department" property="department" />
+		<result column="email" property="email" />
+		<result column="mobile" property="mobile" />
+		<result column="state" property="state" />
+		<result column="last_login_time" property="lastLoginTime" />
+		<result column="create_time" property="createTime" />
+		<result column="modify_time" property="modifyTime" />
+	</resultMap>
+
+
+	<resultMap id="UPMap" type="com.UserRole.POJO.UserPOJO">
+		<result column="user_id" property="userId" />
+		<result column="user_name" property="username" />
+		<result column="department" property="department" />
+		<result column="email" property="email" />
+		<result column="mobile" property="mobile" />
+		<result column="state" property="state" />
+		<result column="last_login_time" property="lastLoginTime" />
+		<result column="create_time" property="createTime" />
+		<result column="modify_time" property="modifyTime" />
+		<result column="role_name" property="roleName" />
+		<result column="role_id" property="roleId" />
+	</resultMap>
+
+	<resultMap id="roleMap" type="com.UserRole.model.Role">
+		<result column="role_id" property="roleId" />
+		<result column="role_name" property="roleName" />
+		<result column="state" property="state" />
+	</resultMap>
+
+
+	<resultMap id="userRoleMap"
+		type="com.UserRole.model.UserRole">
+		<result column="user_role_id" property="userRoleId" />
+		<result column="user_id" property="userId" />
+		<result column="role_id" property="roleId" />
+	</resultMap>
+
+
+	<insert id="insert" parameterType="com.UserRole.model.User">
+
+		INSERT INTO user (user_id, user_name, department, email, mobile, state,
+		last_login_time, create_time, modify_time)
+		VALUES (#{userId}, #{username}, #{department}, #{email}, #{mobile},
+		#{state}, #{lastLoginTime}, #{createTime}, #{modifyTime})
+
+	</insert>
+
+	<insert id="addUser" parameterType="com.UserRole.model.User">
+
+		INSERT INTO user (user_id, user_name, department, email, mobile, state)
+		VALUES (#{userId}, #{username}, #{department}, #{email}, #{mobile},
+		#{state})
+
+	</insert>
+
+	<sql id="find_xxx">
   		<![CDATA[
   		select user_id,  user_name, department, email, mobile, state, last_login_time, create_time, modify_time
   		]]>
-  </sql>
-  
-  <sql id="from_xxx">
+	</sql>
+
+	<sql id="from_xxx">
   <![CDATA[
   		from user
   		]]>
-  </sql>
-  
-  
-  <select id="findUsers" parameterType="string" resultMap="UPMap">  
-		SELECT  u.user_id, 			
-				u.user_name, 
-				u.department, 
-				u.email, 
-				u.mobile, 
-				u.state, 			
-			    DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
-				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
-				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time, 
-				r.role_name,
-				r.role_id
-						
-	from user u	
+	</sql>
 
-        JOIN user_role ur on u.user_id = ur.user_id
-        JOIN role r on r.role_id = ur.role_id
 
-        ORDER BY create_time ASC
-  </select>
-  
-   <select id="findUserById" parameterType="string" resultMap="UPMap">  
-		SELECT  u.user_id, 
-				
-				u.user_name, 
-				u.department, 
-				u.email, 
-				u.mobile,				
-				u.state, 
-				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
-				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
-				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
-				r.role_name,
-				r.role_id
-						
-		FROM user u	
-	
-	        JOIN user_role ur on u.user_id = ur.user_id
-	        JOIN role r on r.role_id = ur.role_id
-	
+	<select id="findUsers" parameterType="string" resultMap="UPMap">
+		SELECT u.user_id,
+		u.user_name,
+		u.department,
+		u.email,
+		u.mobile,
+		u.state,
+		DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time,
+		DATE_FORMAT(create_time,'%Y-%m-%d') as create_time,
+		DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+		r.role_name,
+		r.role_id
+
+		from user u
+
+		JOIN user_role ur on u.user_id = ur.user_id
+		JOIN role r on r.role_id = ur.role_id
+
+		ORDER BY create_time ASC
+	</select>
+
+	<select id="findUserById" parameterType="string" resultMap="UPMap">
+		SELECT u.user_id,
+
+		u.user_name,
+		u.department,
+		u.email,
+		u.mobile,
+		u.state,
+		DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time,
+		DATE_FORMAT(create_time,'%Y-%m-%d') as create_time,
+		DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+		r.role_name,
+		r.role_id
+
+		FROM user u
+
+		JOIN user_role ur on u.user_id = ur.user_id
+		JOIN role r on r.role_id = ur.role_id
+
 		WHERE u.user_id=#{userId}
-       
-  </select>
-    
-  
-  
-     <select id="findUserList" parameterType="string" resultMap="UPMap">  
-		SELECT  u.user_id, 
-				
-				u.user_name, 
-				u.department, 
-				u.email, 
-				u.mobile,				
-				u.state, 
-				DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time, 
-				DATE_FORMAT(create_time,'%Y-%m-%d') as create_time, 
-				DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
-				r.role_name,
-				r.role_id
-						
-		FROM user u	
-	
-	        JOIN user_role ur on u.user_id = ur.user_id
-	        JOIN role r on r.role_id = ur.role_id
-	
+
+	</select>
+
+
+
+	<select id="findUserList" parameterType="string" resultMap="UPMap">
+		SELECT u.user_id,
+
+		u.user_name,
+		u.department,
+		u.email,
+		u.mobile,
+		u.state,
+		DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time,
+		DATE_FORMAT(create_time,'%Y-%m-%d') as create_time,
+		DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+		r.role_name,
+		r.role_id
+
+		FROM user u
+
+		JOIN user_role ur on u.user_id = ur.user_id
+		JOIN
+		role r on r.role_id = ur.role_id
+
 		WHERE ur.role_id=#{roleId}
-       
-  </select>
-  
-  <update id="updateUser" parameterType="com.UserRole.model.User"> 	
+		
+		ORDER BY create_time ASC
 
-    update 	user
-    set 	user_name = #{username},
-	      	department = #{department},
-	     	email = #{email},
-	      	mobile = #{mobile},
-	      	state = #{state}	    	
-	      
-    where 	user_id = #{userId}
-  </update>
-  
-  <delete id="deleteUser" parameterType="String">
-  
-  	 DELETE 	ur, u
-     FROM 		user_role ur
-            
-     JOIN 		user u on u.user_id = ur.user_id
-     JOIN 		role r on r.role_id = ur.role_id
-	        
-     WHERE 		ur.user_id = #{userId}
-     
-  </delete>
-  
+	</select>
+	
+	
+	
+	<select id="findNoUserList" parameterType="string" resultMap="UPMap">
+		SELECT u.user_id,
 
- </mapper>
+		u.user_name,
+		u.department,
+		u.email,
+		u.mobile,
+		u.state,
+		DATE_FORMAT(last_login_time,'%Y-%m-%d') as last_login_time,
+		DATE_FORMAT(create_time,'%Y-%m-%d') as create_time,
+		DATE_FORMAT(modify_time,'%Y-%m-%d') as modify_time,
+		r.role_name,
+		r.role_id
+
+		FROM user u
+
+		JOIN user_role ur on u.user_id = ur.user_id
+		JOIN
+		role r on r.role_id = ur.role_id
+
+		WHERE ur.role_id NOT IN (#{roleId})
+		
+		ORDER BY create_time ASC
+
+	</select>
+	
+	
+
+	<update id="updateUser" parameterType="com.UserRole.model.User">
+
+		update user
+		set user_name = #{username},
+		department = #{department},
+		email = #{email},
+		mobile = #{mobile},
+		state = #{state}
+
+		where user_id = #{userId}
+	</update>
+
+	<delete id="deleteUser" parameterType="String">
+
+		DELETE ur, u
+		FROM user_role ur
+
+		JOIN user u on u.user_id = ur.user_id
+		JOIN role r on r.role_id = ur.role_id
+
+		WHERE ur.user_id = #{userId}
+
+	</delete>
+
+
+</mapper>
