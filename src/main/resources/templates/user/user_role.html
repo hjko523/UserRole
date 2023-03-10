@@ -62,27 +62,28 @@ select {
 		</div>
 
 		<div class="userRole_info test">
-
-			<div class="urInfo test">
-				<div class="table_title"><b>해당 권한 사용자 목록</b></div>
-				<div class="urInfo_table" th:replace="~{/user/frag_urInfo::ur}">
-					
+			<div class="userRole_info_sub">
+				<div class="urInfo test">
+					<div class="table_title"><b>해당 권한 사용자 목록</b></div>
+					<div class="urInfo_table" th:replace="~{/user/frag_urInfo::ur}">
+						
+					</div>
 				</div>
-			</div>
-
-			<div class="selInfo test" id="selInfo">
-				<div class="table_title"><b>권한 수정</b></div>
-				<div class="selInfo_table" th:replace="~{/user/frag_selInfo::sel}">
-					
+	
+				<div class="selInfo test" id="selInfo">
+					<div class="table_title"><b>권한 수정</b></div>
+					<div class="selInfo_table" th:replace="~{/user/frag_selInfo::sel}">
+						
+					</div>
 				</div>
-			</div>
-			
-			<div class="NoUrInfo test" id="NoUrInfo">
-				<div class="table_title"><b>해당 권한 외 사용자 목록</b></div>
-				<div class="NoUrInfo_table" th:replace="~{/user/frag_noUrInfo::no}">
-					
+				
+				<div class="NoUrInfo test" id="NoUrInfo">
+					<div class="table_title"><b>해당 권한 외 사용자 목록</b></div>
+					<div class="NoUrInfo_table" th:replace="~{/user/frag_noUrInfo::no}">
+						
+					</div>
 				</div>
-			</div>
+			</div>	
 		</div>
 
 			

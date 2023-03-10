@@ -8,7 +8,6 @@ table, th, td {
 	text-align: center;
 }
 
-
 .left_navbar {
 	display: block;
 	float: left;
@@ -18,7 +17,6 @@ table, th, td {
 	display: inline-block;
 	padding-left: 30px;
 	margin-top: 30px;
-	
 }
 
 .userAdd {
@@ -38,42 +36,67 @@ a:active :hover :visited {
 	text-decoration: none;
 }
 
-
-
 /* user_role 페이지 */
+
+.role_info {
+	height: 250px;
+	text-align: center;
+}
 
 .userRole_title {
 	text-align: center;
 }
 
-.role_info {
-	height: 250px;
+.userRole_info {
+	height: 350px;
 	text-align: center;
-
+	padding-top: 30px;
 }
+
+.userRole_info_sub {	
+	height: 300px;
+	width: 70%;
+	margin: auto;
+	padding-top: 30px;
+}
+
+
 
 .test {
 	border: 1px solid black;
 }
 
-.userRole_info {
+
+.urInfo {
 	
-	height: 300px;
-	text-align: center;
-	padding-top: 30px;
+    float: left;
+  
+	height: 250px;
+	/* float : right; */
 }
 
-.urInfo_table {
-	display: inline-block;
-}
-.urInfo , .NoUrInfo {
-	  display: inline-block;
-	  height: 250px;
-	 
-}
+
 .selInfo {
-  display: inline-block;
-  width: 100px;
-  padding: 0 30px;
-  margin: 0 60px;
+	float: left;
+  
+
+	 text-align: center;
+	/*position: absolute;
+
+	width: 100px; */
+	 padding: 0 30px;
+	margin: 0 60px;
 }
+
+.NoUrInfo {
+	float: left;
+  
+	height: 250px;
+	/* 
+	position: absolute;
+	display: inline-block;
+	height: 250px; */
+	
+} 
+
+
