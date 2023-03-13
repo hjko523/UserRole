@@ -20,25 +20,14 @@
 <div layout:fragment="content">
 
 	<div class="wrapper">		
-		<div class="test">
-			<div class="roleList">
-				<table class="roleDetail">
-					<tr>
-						<th>권한명</th>						
-					</tr>
-					
-					<tr th:each="r : ${roleList}">
-						<td th:text="${r.roleName}"></td>						
-					</tr>
-					
-				</table>	
-			</div>
-			<div class="menu test">			
+		<div class="menu_wrap test">	
+		<div class="menu_wrap_sub test">
+			<div class="available_menu test">			
 				<table>
 					<tr>
-						<th>구분</th>
-						<th>메뉴 이름</th>
-						<th>메뉴 타입</th>
+						<th>분류</th>
+						<th>이름</th>
+						<th>타입</th>
 					</tr>
 					<tr th:each="m : ${menuList}">
 						<td th:text="${m.category}"></td>
@@ -47,6 +36,23 @@
 						
 					</tr>
 				</table>
+			</div>
+			
+			<div class="class_menu test">			
+				<table>
+					<tr>
+						<th>분류</th>
+						<th>이름</th>
+						<th>타입</th>
+					</tr>
+					<tr th:each="m : ${menuList}">
+						<td th:text="${m.category}"></td>
+						<td th:text="${m.menuName}"></td>
+						<td th:text="${m.menuType}"></td>
+						
+					</tr>
+				</table>
+			</div>
 			</div>
 		</div>
 		

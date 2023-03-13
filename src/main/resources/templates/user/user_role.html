@@ -53,7 +53,7 @@ select {
 				</tr>
 				
 				<tr th:each="r : ${roleList}" >
-					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]])"></td>
+					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]],[[${r.roleName}]])"></td>
 					<td th:text="${r.state}"></td>
 					<td th:text="${r.description}"></td>
 				</tr>
@@ -64,7 +64,7 @@ select {
 		<div class="userRole_info test">
 			<div class="userRole_info_sub">
 				<div class="urInfo test">
-					<div class="table_title"><b>해당 권한 사용자 목록</b></div>
+					<div class="table_title" sytle="padding-bottom:8px;"><b>해당 권한 사용자 목록</b></div>
 					<div class="urInfo_table" th:replace="~{/user/frag_urInfo::ur}">
 						
 					</div>
@@ -107,18 +107,20 @@ select {
 
 
 	// 선택한 권한 관련 사용자 목록 출력
-	function clickRole(data){	
+	function clickRole(roleId, roleName){	
 	
-		var roleId = data;
+		//var roleId = data;
 		console.log("선택한 권한 : " +roleId);
+		console.log("선택한 권한 : " +roleName);
 		 
-		$(".urInfo_table").val('');
+		
 		//$("#selInfo_table").load(location.href + " #selInfo_table")
 		
 		document.getElementById("userId").textContent = "";		
 		document.getElementById("username").textContent = "";
 		document.getElementById("ur_select").selectedIndex = 0;
 		
+		//$("#curRole").val(roleName);
 		
 		$.ajax({
             url: 'userRole_info',
@@ -128,8 +130,8 @@ select {
             success: function (data) {         	
             	            
             	$(".urInfo_table").replaceWith(data);
-            	
-                          
+            	$("#curRole").replaceWith(roleName);
+            	//document.getElementById("curRole").textContent = roleName;
             }
          })
         

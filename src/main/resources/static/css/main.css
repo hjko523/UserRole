@@ -67,36 +67,52 @@ a:active :hover :visited {
 }
 
 
-.urInfo {
-	
-    float: left;
-  
+.urInfo {	
+    float: left;  
 	height: 250px;
-	/* float : right; */
 }
 
 
 .selInfo {
 	float: left;
-  
-
-	 text-align: center;
-	/*position: absolute;
-
-	width: 100px; */
-	 padding: 0 30px;
+	text-align: center;	
+	padding: 0 30px;
 	margin: 0 60px;
 }
 
 .NoUrInfo {
-	float: left;
-  
-	height: 250px;
-	/* 
-	position: absolute;
-	display: inline-block;
-	height: 250px; */
-	
+	float: left;  
+	height: 250px;	
 } 
 
+#curRole {
+	width: 15px;
+}
+
+/* menu */
+
+.menu_wrap{
+	height: 350px;
+	text-align: center;
+	
+}
+.available_menu {	
+    float: left;  
+	height: 250px;
+}
+
+
+.class_menu {
+	float: left;
+	text-align: center;	
+	padding: 0 30px;
+	margin: 0 60px;
+}
+
+.menu_wrap_sub {
+	height: 300px;
+	width: 70%;
+	margin: auto;
+	padding-top: 30px;
+}
 

@@ -4,20 +4,30 @@
 <mapper namespace="com.UserRole.mapper.MenuMapper">
 
   <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
-    <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
-    <result column="category" jdbcType="VARCHAR" property="category" />
-    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
-    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
-    <result column="show" jdbcType="INTEGER" property="show" />
+    <result column="menu_id" 	property="menuId" />
+    <result column="category" 	property="category" />
+    <result column="menu_name" 	property="menuName" />
+    <result column="menu_type" 	property="menuType" />
+    <result column="show" 		property="show" />
   </resultMap>
   
  
   <insert id="updateByExampleSelective" parameterType="map">
-    insert into menu (menu_id, category, menu_name,  menu_type, show)
-    values (#{menuId,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
-      #{menuType,jdbcType=VARCHAR}, #{show,jdbcType=INTEGER})
+    insert into menu (menu_id, category, menu_name,  menu_type, `show`)
+    values (#{menuId}, #{category}, #{menuName}, #{menuType}, #{show})
   </insert>
   
+  <select id="findMenu" parameterType="string" resultMap="menuMap">
+  	select 	menu_id,
+  			category,
+  			menu_name,
+  			menu_type,
+  			`show`
+  			
+  	from 	menu
+  
+  
+  </select>
 
  	<update id="updateByExample" parameterType="map">
     update menu

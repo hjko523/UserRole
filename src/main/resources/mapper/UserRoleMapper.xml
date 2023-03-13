@@ -43,10 +43,7 @@
   
   <update id="updateUr" parameterType="com.UserRole.model.UserRole">
   	UPDATE user_role
-        <set>
-            <if test="userId != null">
-                user_id = #{userId},
-            </if>
+        <set>            
             <if test="roleId != null">
                 role_id = #{roleId}
             </if>

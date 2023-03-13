@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService{
 		
 		// 기존 user정보 가져오기
 		UserPOJO u = userMapper.findUserById(user.getUserId());  
-		log.info("기존 ={}", u);
+		log.info("기존 사용자 ={}", u);
               
 		log.info("기존 role ={}", u.getRoleName());
 		log.info("new role ={}", roleId);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.UserRole.mapper.RoleMenuMapper">
+<mapper namespace="com.UserRole.mapper.MenuRoleMapper">
 
-  <resultMap id="BaseResultMap" type="com.UserRole.model.RoleMenu"> 
+  <resultMap id="mrMap" type="com.UserRole.model.MenuRole"> 
     <result column="role_menu_id" jdbcType="VARCHAR" property="roleMenuId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
@@ -14,6 +14,18 @@
     <result column="delete" jdbcType="INTEGER" property="delete" />
     <result column="state" jdbcType="INTEGER" property="state" />
   </resultMap>
+  
+  <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
+    <result column="menu_id" 	property="menuId" />
+    <result column="category" 	property="category" />
+    <result column="menu_name" 	property="menuName" />
+    <result column="menu_type" 	property="menuType" />
+    <result column="show" 		property="show" />
+  </resultMap>
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
   
     delete from role_menu

@@ -5,29 +5,31 @@ import lombok.Data;
 @Data
 public class UserPOJO {
 
-	private String userId;
-	
-	private String username;
-	
-	private String department;
-	
-	private String email;
-	
-	private String mobile;
-	
-	private String state;
-	
-	private String lastLoginTime;
-	
-	private String createTime;
-	
-	private String modifyTime;
-	
-	
-	private String roleName;
+	private String roleMenuId;
 	
 	private String roleId;
 	
+	private String menuId;
+	
+	private String menuName;
+	
+	private Integer read;
+	
+	private Integer create;
+	
+	private Integer update;
+	
+	private Integer delete;
+	
+	private Integer state;
+	
 
+
+	
+	private String category;	
+	
+	private String menuType;
+	
+	private Integer show;
 	
 }
