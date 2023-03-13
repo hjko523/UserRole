@@ -11,6 +11,9 @@
 
 <style>
 
+tr, td {
+	padding: 3px 5px;
+}
 </style>
 
 </th:block>
@@ -21,38 +24,42 @@
 
 	<div class="wrapper">		
 		<div class="menu_wrap test">	
-		<div class="menu_wrap_sub test">
-			<div class="available_menu test">			
-				<table>
-					<tr>
-						<th>분류</th>
-						<th>이름</th>
-						<th>타입</th>
-					</tr>
-					<tr th:each="m : ${menuList}">
-						<td th:text="${m.category}"></td>
-						<td th:text="${m.menuName}"></td>
-						<td th:text="${m.menuType}"></td>
-						
-					</tr>
-				</table>
-			</div>
-			
-			<div class="class_menu test">			
-				<table>
-					<tr>
-						<th>분류</th>
-						<th>이름</th>
-						<th>타입</th>
-					</tr>
-					<tr th:each="m : ${menuList}">
-						<td th:text="${m.category}"></td>
-						<td th:text="${m.menuName}"></td>
-						<td th:text="${m.menuType}"></td>
-						
-					</tr>
-				</table>
-			</div>
+			<div class="menu_wrap_sub test">
+				<div class="available_menu test">
+					<div class="available_menu_table">
+						<table>
+							<tr>
+								<th>분류</th>
+								<th>이름</th>
+								<th>타입</th>
+							</tr>
+							<tr th:each="m : ${menuList}">
+								<td th:text="${m.category}"></td>
+								<td th:text="${m.menuName}"></td>
+								<td th:text="${m.menuType}"></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="class_menu test">
+					<div  class="class_menu_table">
+						<table>
+							<tr>
+								<th>분류</th>
+								<th>이름</th>
+								<th>타입</th>
+							</tr>
+							<tr th:each="m : ${menuList}" >
+								<td th:text="${m.category}"></td>
+								<td th:text="${m.menuName}"></td>
+								<td th:text="${m.menuType}"></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 		

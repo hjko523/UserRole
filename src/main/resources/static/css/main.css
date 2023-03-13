@@ -1,40 +1,4 @@
-ul, li {
-	list-style: none;
-}
 
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
-}
-
-.left_navbar {
-	display: block;
-	float: left;
-}
-
-.user_table {
-	display: inline-block;
-	padding-left: 30px;
-	margin-top: 30px;
-}
-
-.userAdd {
-	padding-bottom: 10px;;
-}
-
-.userSearch {
-	padding-bottom: 10px;;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-a:active :hover :visited {
-	text-decoration: none;
-}
 
 /* user_role 페이지 */
 
@@ -77,16 +41,30 @@ a:active :hover :visited {
 	float: left;
 	text-align: center;	
 	padding: 0 30px;
-	margin: 0 60px;
+	margin: 0 50px;
 }
 
 .NoUrInfo {
 	float: left;  
 	height: 250px;	
-} 
+}
+
+
+.selInfo_table {
+	width: 100px;
+}
 
 #curRole {
 	width: 15px;
+
+}
+
+#cur {
+	margin: 5px;
+}
+
+#changeBtn {
+	margin: 10px;
 }
 
 /* menu */
@@ -96,23 +74,32 @@ a:active :hover :visited {
 	text-align: center;
 	
 }
-.available_menu {	
-    float: left;  
-	height: 250px;
+.available_menu {
+	height: 300px;
+    float: left;
 }
 
 
 .class_menu {
+	height: 300px;
 	float: left;
-	text-align: center;	
-	padding: 0 30px;
+	text-align: center;
 	margin: 0 60px;
 }
 
 .menu_wrap_sub {
 	height: 300px;
-	width: 70%;
+	width: 800px;
 	margin: auto;
 	padding-top: 30px;
 }
 
+.available_menu_table,
+.class_menu_table {
+	height: 300px;
+	overflow-y:scroll;
+}
+
+.scroll {
+	overflow-y:scroll;
+}

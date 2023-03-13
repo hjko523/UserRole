@@ -36,40 +36,42 @@ th {
 			<div class="userAdd">
 				<button class="addBtn" type="button" onclick="location.href='/user/user_add'">사용자 추가</button>
 			</div>
-			<div class="userSearch">
+			<!--<div class="userSearch">
 				<input type="text">
 				<button class="searchBtn" onclick="alert('오픈중')">검색</button>
-			</div>
+			</div>-->
 		</div>
-		<table>
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>부서</th>
-				<th>역할</th>
-				<th>이메일</th>
-				<th>모바일</th>
-				<th>상태</th>
-				<th>마지막 접속</th>
-				<th>등록일</th>
-				<th>수정일</th>
-				<th>수정</th>				
-			</tr>
-			<tr th:each="list : ${userList}">
-				<td th:text="${list.userId}"></td>
-				<td th:text="${list.username}"></td>
-				<td th:text="${list.department}"></td>
-				<td th:text="${list.roleName}"></td>
-				<td th:text="${list.email}"></td>
-				<td th:text="${list.mobile}" width="9%"></td>
-				<td th:text="${list.state}"></td>
-				<td th:text="${list.lastLoginTime}"></td>
-				<td th:text="${list.createTime}"></td>
-				<td th:text="${list.modifyTime}"></td>
-				<td><button id="edit_btn" th:onclick="'location.href=\'' + @{/user/load_edit(userId=${list.userId})} + '\''">수정</button></td>
-				<!-- <td><button id="edit_btn" th:onclick="location.href='/user/user_edit?userId=${list.userId}'">수정</button></td> -->					
-			</tr>			
-		</table>
+			<div class="scroll">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>부서</th>
+						<th>역할</th>
+						<th>이메일</th>
+						<th>모바일</th>
+						<th>상태</th>
+						<th>마지막 접속</th>
+						<th>등록일</th>
+						<th>수정일</th>
+						<th>수정</th>
+					</tr>
+					<tr th:each="list : ${userList}">
+						<td th:text="${list.userId}"></td>
+						<td th:text="${list.username}"></td>
+						<td th:text="${list.department}"></td>
+						<td th:text="${list.roleName}"></td>
+						<td th:text="${list.email}"></td>
+						<td th:text="${list.mobile}" width="9%"></td>
+						<td th:text="${list.state}"></td>
+						<td th:text="${list.lastLoginTime}"></td>
+						<td th:text="${list.createTime}"></td>
+						<td th:text="${list.modifyTime}"></td>
+						<td><button id="edit_btn" th:onclick="'location.href=\'' + @{/user/load_edit(userId=${list.userId})} + '\''">수정</button></td>
+						<!-- <td><button id="edit_btn" th:onclick="location.href='/user/user_edit?userId=${list.userId}'">수정</button></td> -->
+					</tr>
+				</table>
+			</div>
 	</div>
 	
 	</div>
