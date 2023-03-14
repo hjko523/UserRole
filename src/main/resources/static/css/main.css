@@ -1,4 +1,4 @@
-ul, li {
+/* ul, li {
 	list-style: none;
 }
 
@@ -35,7 +35,7 @@ a {
 a:active :hover :visited {
 	text-decoration: none;
 }
-
+ */
 /* user_role 페이지 */
 
 .role_info {
@@ -67,36 +67,79 @@ a:active :hover :visited {
 }
 
 
-.urInfo {
-	
-    float: left;
-  
+.urInfo {	
+    float: left;  
 	height: 250px;
-	/* float : right; */
 }
 
 
 .selInfo {
 	float: left;
-  
-
-	 text-align: center;
-	/*position: absolute;
-
-	width: 100px; */
-	 padding: 0 30px;
-	margin: 0 60px;
+	text-align: center;	
+	padding: 0 30px;
+	margin: 0 50px;
 }
 
 .NoUrInfo {
-	float: left;
-  
-	height: 250px;
-	/* 
-	position: absolute;
-	display: inline-block;
-	height: 250px; */
-	
+	float: left;  
+	height: 250px;	
 } 
 
+.selInfo_table {
+	width: 100px;
+}
+
+
+#cur {
+	margin: 5px;
+	height: 21px;
+}
+
+#changeBtn {
+	margin: 10px;
+}
+/* menu */
+
+.menu_wrap{
+	height: 350px;
+	text-align: center;
+	
+}
+.available_menu {
+	height: 300px;
+    float: left;
+}
+
+
+.class_menu {
+	height: 300px;
+	float: left;
+	text-align: center;
+	margin: 0 60px;
+}
+
+.menu_wrap_sub {
+	height: 300px;
+	width: 850px;
+	margin: auto;
+	padding-top: 30px;
+}
+
+.available_menu_table,
+.class_menu_table,
+.class_menu_table2 {
+	height: 300px;
+	/* overflow-y:scroll; */
+}
+
+.class_menu_table {
+	float: left;
+	margin-right: 30px;
+
+} 
+
+
+.scroll {
+	overflow-y:scroll;
+}
 

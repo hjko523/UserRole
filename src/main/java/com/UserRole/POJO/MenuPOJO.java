@@ -1,10 +1,10 @@
-package com.UserRole.model;
+package com.UserRole.POJO;
 
 import lombok.Data;
 
 @Data
-public class RoleMenu {
-	
+public class MenuPOJO {
+
 	private String roleMenuId;
 	
 	private String roleId;
@@ -23,5 +23,18 @@ public class RoleMenu {
 	
 	private Integer state;
 	
+
+
+	
+	private String category;	
+	
+	private String cateNum;
+	
+	private String menuType;
+	
+	private String crud;
+	
+	private Integer show;
+
 	
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.UserRole.mapper.MenuRoleMapper">
+
+  <resultMap id="mrMap" type="com.UserRole.model.MenuRole"> 
+    <result column="role_menu_id"   property="roleMenuId" />
+    <result column="role_id"        property="roleId" />
+    <result column="menu_id"        property="menuId" />
+    <result column="menu_name"      property="menuName" />
+    <result column="read"           property="read" />
+    <result column="create"         property="create" />
+    <result column="update"         property="update" />
+    <result column="delete"         property="delete" />
+    <result column="state"          property="state" />
+  </resultMap>
+  
+  <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
+    <result column="menu_id" 	    property="menuId" />
+    <result column="category" 	    property="category" />
+    <result column="category_num" 	property="cateNum" />
+    <result column="menu_name" 	    property="menuName" />
+    <result column="crud" 	        property="crud" />
+    <result column="menu_type" 	    property="menuType" />
+    <result column="show" 		    property="show" />
+  </resultMap>
+
+  <resultMap id="mpMap" type="com.UserRole.POJO.MenuPOJO">
+    <result column="role_menu_id"   property="roleMenuId" />
+    <result column="role_id"        property="roleId" />
+    <result column="menu_id"        property="menuId" />
+    <result column="menu_name"      property="menuName" />
+    <result column="read"           property="read" />
+    <result column="create"         property="create" />
+    <result column="update"         property="update" />
+    <result column="delete"         property="delete" />
+      <result column="state"        property="state" />
+    <result column="category" 	    property="category" />
+    <result column="category_num" 	property="cateNum" />
+    <result column="menu_name" 	    property="menuName" />
+    <result column="crud" 	        property="crud" />
+    <result column="menu_type"    	property="menuType" />
+    <result column="show" 	        property="show" />
+  </resultMap>
+  
+  
+
+  <insert id="insert" parameterType="com.UserRole.model.MenuRole">
+    insert into role_menu (role_menu_id, role_id, menu_id, menu_name, `read`, `create`, `update`, `delete`, `state`)
+    values (#{roleMenuId}, #{roleId}, #{menuId},#{menuName}, #{read}, #{create}, #{update}, #{delet}, #{state})
+  </insert>
+
+  <select id="findMr" parameterType="java.lang.String" resultMap="mrMap">
+
+    select  role_menu_id,
+            role_id,
+            menu_id,
+            menu_name,
+            `read`,
+            `create`,
+            `update`,
+            `delete`,
+            `state`
+
+    from    role_menu
+
+    jon
+
+    where   role_menu_id = #{roleMenuId}
+  </select>
+
+  <select id="selectAll" resultMap="mrMap">
+
+    select role_menu_id, role_id, menu_id, menu_name,`read`, `create`, `update`, `delete`, `state`
+    from role_menu
+  </select>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.UserRole.model.MenuRole">
+
+    update role_menu
+    set role_id = #{roleId,jdbcType=VARCHAR},
+        menu_id = #{menuId,jdbcType=VARCHAR},
+        menu_name = #{menuName,jdbcType=VARCHAR},
+        read = #{read,jdbcType=INTEGER},
+        create = #{create,jdbcType=INTEGER},
+        update = #{update,jdbcType=INTEGER},
+        delete = #{delete,jdbcType=INTEGER},
+        state = #{state,jdbcType=INTEGER}
+    where role_menu_id = #{roleMenuId,jdbcType=VARCHAR}
+  </update>
+
+
+  </mapper>

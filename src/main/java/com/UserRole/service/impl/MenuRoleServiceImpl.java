@@ -2,21 +2,25 @@ package com.UserRole.service.impl;
 
 import java.util.List;
 
-import com.UserRole.mapper.MenuMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.UserRole.mapper.MenuMapper;
+import com.UserRole.mapper.MenuRoleMapper;
 import com.UserRole.mapper.RoleMapper;
-import com.UserRole.model.Menu;
-import com.UserRole.service.MenuService;
+import com.UserRole.model.MenuRole;
+import com.UserRole.service.MenuRoleService;
 import com.UserRole.web.UserController;
 
 @Service
-public class MenuServiceImpl implements MenuService{
+public class MenuRoleServiceImpl implements MenuRoleService{
 	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
+	@Autowired
+	private MenuRoleMapper mrMapper;
 	
 
 	@Autowired
@@ -28,9 +32,9 @@ public class MenuServiceImpl implements MenuService{
 
 
 	@Override
-	public List<Menu> findMenu() {
+	public List<MenuRole> findMr() {
 		
-		return menuMapper.findMenu();
+		return mrMapper.findMr();
 	}
 	
 

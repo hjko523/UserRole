@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+      layout:decorate="~{layout/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<th:block layout:fragment="css">
+
+<style>
+
+tr, td {
+	padding: 3px 5px;
+	
+	}
+
+</style>
+
+</th:block>
+
+<body>
+
+<div layout:fragment="content">
+
+	<div class="wrapper">		
+		<div class="menu_wrap test">	
+			<div class="menu_wrap_sub test">
+				<div class="available_menu test">
+					<div class="available_menu_table scroll">
+						<table>
+							<tr>
+								<th>분류</th>
+								<th>이름</th>
+								<th>타입</th>
+							</tr>
+							<tr th:each="m : ${menuList}">
+								<td th:text="${m.category}"></td>
+								<td th:text="${m.menuName}"></td>
+								<td th:text="${m.menuType}"></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="class_menu test">
+					<div  class="class_menu_table scroll">
+						<table>
+							<tr>
+								<th>분류</th>								
+							</tr>
+							<tr th:each="m : ${menuList}" >
+								<td th:text="${m.category}"></td>	
+							</tr>
+						</table>
+					</div>
+					<div  class="class_menu_table2 scroll">
+						<table>
+							<tr>							
+								<th>이름</th>
+								<th>타입</th>
+							</tr>
+							<tr th:each="m : ${menuList}" >								
+								<td th:text="${m.menuName}"></td>
+								<td th:text="${m.menuType}"></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div> <!-- wrapper -->	
+</div>
+
+
+<th:block layout:fragment="script">
+<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
+<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
+
+
+<script>
+
+
+
+	// 
+	function clickRole(data){	
+	
+		
+        
+         $.ajax({
+            url: 'noUserRole_info',
+            type: "post",
+            data: {roleId:roleId}, 
+            async: false,
+            success: function (data) {         	           	
+            
+            	$(".NoUrInfo_table").replaceWith(data);           
+               
+            }
+         })	   
+		
+	};
+	
+	
+
+	
+	
+	
+$(document).ready(function () {
+	
+	
+})
+        
+</script>
+</th:block>
+
+	
+</body>
+</html>
+

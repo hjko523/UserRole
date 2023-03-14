@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
-      layout:decorate="~{layout/layout1}">
+	  xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+	  layout:decorate="~{layout/layout1}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 
 <th:block layout:fragment="css">
 
-<style>
+	<style>
 
-</style>
+	</style>
 
 </th:block>
 
@@ -19,65 +19,85 @@
 
 <div layout:fragment="content">
 
-	<div class="wrapper">		
-	
-		<div>
-			<table>
-				<tr>
-					<td th:each="m : ${menuList}" th:text="${menuName}"></td>
-				</tr>
-			</table>
+	<div class="wrapper">
+		<div class="test">
+			<div class="roleList">
+				<table class="roleDetail">
+					<tr>
+						<th>권한명</th>
+					</tr>
+
+					<tr th:each="r : ${roleList}">
+						<td th:text="${r.roleName}"></td>
+					</tr>
+
+				</table>
+			</div>
+			<div class="menu test">
+				<table>
+					<tr>
+						<th>구분</th>
+						<th>메뉴 이름</th>
+						<th>메뉴 타입</th>
+					</tr>
+					<tr th:each="m : ${menuList}">
+						<td th:text="${m.category}"></td>
+						<td th:text="${m.menuName}"></td>
+						<td th:text="${m.menuType}"></td>
+
+					</tr>
+				</table>
+			</div>
 		</div>
-		
-		
-		
-	</div> <!-- wrapper -->	
+
+
+	</div> <!-- wrapper -->
 </div>
 
 
 <th:block layout:fragment="script">
-<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
-<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
-<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
+	<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
+	<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+	<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
 
 
-<script>
+	<script>
 
 
 
-	// 
-	function clickRole(data){	
-	
-		
-        
-         $.ajax({
-            url: 'noUserRole_info',
-            type: "post",
-            data: {roleId:roleId}, 
-            async: false,
-            success: function (data) {         	           	
-            
-            	$(".NoUrInfo_table").replaceWith(data);           
-               
-            }
-         })	   
-		
-	};
-	
-	
+		//
+		function clickRole(data){
 
-	
-	
-	
-$(document).ready(function () {
-	
-	
-})
-        
-</script>
+
+
+			$.ajax({
+				url: 'noUserRole_info',
+				type: "post",
+				data: {roleId:roleId},
+				async: false,
+				success: function (data) {
+
+					$(".NoUrInfo_table").replaceWith(data);
+
+				}
+			})
+
+		};
+
+
+
+
+
+
+		$(document).ready(function () {
+
+
+		})
+
+	</script>
 </th:block>
 
-	
+
 </body>
 </html>
 
