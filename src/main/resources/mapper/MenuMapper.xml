@@ -4,31 +4,62 @@
 <mapper namespace="com.UserRole.mapper.MenuMapper">
 
   <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
-    <result column="menu_id" 	property="menuId" />
-    <result column="category" 	property="category" />
-    <result column="menu_name" 	property="menuName" />
-    <result column="menu_type" 	property="menuType" />
-    <result column="show" 		property="show" />
+    <result column="menu_id" 	    property="menuId" />
+    <result column="category" 	    property="category" />
+    <result column="category_num" 	property="cateNum" />
+    <result column="menu_name" 	    property="menuName" />
+    <result column="crud" 	        property="crud" />
+    <result column="menu_type" 	    property="menuType" />
+    <result column="show" 		    property="show" />
   </resultMap>
-  
+
  
   <insert id="updateByExampleSelective" parameterType="map">
-    insert into menu (menu_id, category, menu_name,  menu_type, `show`)
-    values (#{menuId}, #{category}, #{menuName}, #{menuType}, #{show})
+    insert into menu (menu_id, category,category_num, menu_name, crud, menu_type, `show`)
+    values (#{menuId}, #{category}, #{cateNum}, #{menuName}, #{crud}, #{menuType}, #{show})
   </insert>
+  
   
   <select id="findMenu" parameterType="string" resultMap="menuMap">
   	select 	menu_id,
   			category,
+  			category_num,
   			menu_name,
+  			crud,
   			menu_type,
   			`show`
   			
   	from 	menu
   
+  </select>
+  
+  
+  <select id="findCate" parameterType="string" resultType="string">
+  	select 	category
+  			
+  	from 	menu
+  
+  	group by category
   
   </select>
-
+  
+   
+  <select id="findCateList" parameterType="string" resultMap="menuMap">
+  	select 	menu_id,
+  			category,
+  			category_num,
+  			menu_name,
+  			crud,
+  			menu_type,
+  			`show`
+  			
+  	from 	menu
+  	
+  	where   category = #{category}
+  
+  </select>
+  
+    
  	<update id="updateByExample" parameterType="map">
     update menu
     set category = #{category,jdbcType=VARCHAR},

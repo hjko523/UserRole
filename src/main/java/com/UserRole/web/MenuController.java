@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.UserRole.model.Menu;
 import com.UserRole.model.Role;
@@ -36,11 +38,22 @@ public class MenuController {
 	
 	
 	@GetMapping(value="/menu/menu") 
-	public String menu(ModelMap map) { 		
+	public String menu(ModelMap map) {
+				
+		log.info("# menu 정보를 불러옵니다");
 		
 	    // menu list
-		List<Menu> menu = menuService.findMenu();		
+		List<Menu> menu = menuService.findMenu();
+		List<String> cate = menuService.findCate();
+		
+		log.info("menu={}", menu);
+		log.info("cate={}", cate);
+		
+		
+		
+	   
 		map.addAttribute("menuList", menu);
+		map.addAttribute("cate", cate);
 		
 		return "/menu/menu"; 
 	}
@@ -62,4 +75,18 @@ public class MenuController {
 		return "/menu/menu_role"; 
 	}
 	 
+	
+	@PostMapping(value="/menu/menu_cate") 
+	public String menuCateList(@RequestParam("cate")String category, ModelMap map) { 
+		
+		log.info(category);
+		
+		List<Menu> cateList = menuService.findCateList(category);
+		log.info("menuList={}", cateList);
+  
+	    map.addAttribute("cateList", cateList);	
+	    
+	  
+		return "/menu/flag_menuCate"; 
+	}
 }

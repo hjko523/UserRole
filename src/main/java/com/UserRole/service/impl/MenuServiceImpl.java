@@ -2,12 +2,12 @@ package com.UserRole.service.impl;
 
 import java.util.List;
 
-import com.UserRole.mapper.MenuMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.UserRole.mapper.MenuMapper;
 import com.UserRole.mapper.RoleMapper;
 import com.UserRole.model.Menu;
 import com.UserRole.service.MenuService;
@@ -31,6 +31,20 @@ public class MenuServiceImpl implements MenuService{
 	public List<Menu> findMenu() {
 		
 		return menuMapper.findMenu();
+	}
+
+
+	@Override
+	public List<String> findCate() {
+	
+		return menuMapper.findCate();
+	}
+
+
+	@Override
+	public List<Menu> findCateList(String category) {
+		log.info(category);
+		return  menuMapper.findCateList(category);
 	}
 	
 

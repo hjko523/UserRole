@@ -15,6 +15,10 @@ tr, td {
 	padding: 3px 5px;
 	
 	}
+	
+	th {
+		padding: 0;
+		}
 
 </style>
 
@@ -30,47 +34,42 @@ tr, td {
 				<div class="available_menu test">
 					<div class="available_menu_table scroll">
 						<table>
-							<tr>
+							<thead>
+							<tr class="table_fixed">
 								<th>분류</th>
 								<th>이름</th>
 								<th>타입</th>
 							</tr>
-							<tr th:each="m : ${menuList}">
-								<td th:text="${m.category}"></td>
-								<td th:text="${m.menuName}"></td>
-								<td th:text="${m.menuType}"></td>
-
-							</tr>
+							</thead>
+							<tbody>
+								<tr th:each="m : ${menuList}">
+									<td th:text="${m.category}"></td>
+									<td th:text="${m.menuName}"></td>
+									<td th:text="${m.menuType}"></td>
+	
+								</tr>
+							</tbody>
 						</table>
 					</div>
 				</div>
 
-				<div class="class_menu test">
-					<div  class="class_menu_table scroll">
-						<table>
-							<tr>
-								<th>분류</th>								
-							</tr>
-							<tr th:each="m : ${menuList}" >
-								<td th:text="${m.category}"></td>	
-							</tr>
-						</table>
-					</div>
-					<div  class="class_menu_table2 scroll">
-						<table>
-							<tr>							
-								<th>이름</th>
-								<th>타입</th>
-							</tr>
-							<tr th:each="m : ${menuList}" >								
-								<td th:text="${m.menuName}"></td>
-								<td th:text="${m.menuType}"></td>
-
-							</tr>
-						</table>
+					<div class="class_menu test">
+						<div class="class_menu_table scroll">
+							<table>
+								<tr>
+									<th>분류</th>
+								</tr>
+								<tr th:each="c : ${cate}">
+									<td th:text="${c}" th:onclick="clickCate([[${c}]])"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="class_menu_table2 scroll" th:replace="~{/menu/flag_menuCate::cate}"></div>
+						<!-- <div class="Lfloat">
+							<button class="">추가</button>
+						</div> -->
 					</div>
 				</div>
-			</div>
 		</div>
 		
 		
@@ -88,39 +87,67 @@ tr, td {
 
 
 
-	// 
-	function clickRole(data){	
+	// 분류별 카테고리 내역
+	function clickCate(data){	
 	
+		console.log(data);
 		
         
          $.ajax({
-            url: 'noUserRole_info',
+            url: 'menu_cate',
             type: "post",
-            data: {roleId:roleId}, 
-            async: false,
+            data: {cate:data},            
             success: function (data) {         	           	
             
-            	$(".NoUrInfo_table").replaceWith(data);           
+            	$(".class_menu_table2").replaceWith(data);           
                
             }
          })	   
 		
 	};
 	
+	 function clicks(target){
+		console.log("click / " + target);
+
+		$(".tt").css("backgroundColor", "transparent");
+		$("#" + target).css("background-color","blue");		
+		
+		 
+	    var menuId = target; // 선택한 행의 menuId 값 저장
+	    
+	    $(".cateBtn").click(function(){
+	    	console.log("hi")
+	      /*   $.ajax({
+	            type: "POST",
+	            url: "your_url",
+	            data: {"menuId": menuId},
+	            success: function(response){
+	                console.log(response);
+	            },
+	            error: function(error){
+	                console.log(error);
+	            }
+	        }); */
+	    });
+	}
 	
 
+
+
+
+	 
+	 
+	$(document).ready(function() {
+		
+		  
+		});
 	
-	
-	
-$(document).ready(function () {
-	
-	
-})
-        
+ 
 </script>
+
 </th:block>
 
-	
+
 </body>
 </html>
 

@@ -51,7 +51,7 @@ a:active :hover :visited {
 /* Sidebar links */
 .sidebar a {
   display: block;
-    width: 200px;
+  width: 200px;
   color: black;
   padding: 16px;
   text-decoration: none;

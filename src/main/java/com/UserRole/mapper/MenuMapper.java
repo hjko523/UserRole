@@ -10,6 +10,10 @@ import com.UserRole.model.Menu;
 public interface MenuMapper {
 
 	List<Menu> findMenu();
+
+	List<String> findCate();
+
+	List<Menu> findCateList(String category);
   
 
 }

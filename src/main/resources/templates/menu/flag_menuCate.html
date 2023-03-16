@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="class_menu_table2 scroll test" th:fragment="cate">
+	
+		<table>
+			<tr>
+				<th width="60%">이름</th>
+				<th width="40%">타입</th>
+			</tr>
+			<tr class="tt" th:id="${c.menuId}" th:each="c : ${cateList}" th:onclick="clicks([[${c.menuId}]]);">
+				<td class="t t1" th:text="${c.menuName}"></td>
+				<td class="t t2" th:text="${c.menuType}"></td>
+
+			</tr>
+		</table>
+		<div class="Lfloat">
+			<button type="button" class="cateBtn">추가</button>
+		</div>
+	
+</div>
+
+
+</html>

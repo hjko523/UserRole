@@ -53,7 +53,7 @@ select {
 				</tr>
 				
 				<tr th:each="r : ${roleList}" >
-					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]])"></td>
+					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]],[[${r.roleName}]])"></td>
 					<td th:text="${r.state}"></td>
 					<td th:text="${r.description}"></td>
 				</tr>
@@ -107,17 +107,20 @@ select {
 
 
 	// 선택한 권한 관련 사용자 목록 출력
-	function clickRole(data){	
+	function clickRole(roleId, roleName){	
 	
-		var roleId = data;
+
+		//var roleId = data;
 		console.log("선택한 권한 : " +roleId);
+		console.log("선택한 권한 : " +roleName);
 		 
-		$(".urInfo_table").val('');
+		
 		//$("#selInfo_table").load(location.href + " #selInfo_table")
 		
 		document.getElementById("userId").textContent = "";		
 		document.getElementById("username").textContent = "";
 		document.getElementById("ur_select").selectedIndex = 0;
+		
 		
 		
 		$.ajax({
@@ -128,7 +131,7 @@ select {
             success: function (data) {         	
             	            
             	$(".urInfo_table").replaceWith(data);
-            	
+             	$("#curRole").replaceWith("<" + roleName + ">");
                           
             }
          })
