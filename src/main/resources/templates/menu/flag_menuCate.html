@@ -5,17 +5,27 @@
 		<table>
 			<tr>
 				<th width="60%">이름</th>
-				<th width="40%">타입</th>
+				<th width="40%">상태</th>					
 			</tr>
-			<tr class="tt" th:id="${c.menuId}" th:each="c : ${cateList}" th:onclick="clicks([[${c.menuId}]]);">
-				<td class="t t1" th:text="${c.menuName}"></td>
-				<td class="t t2" th:text="${c.menuType}"></td>
-
-			</tr>
+			<tr th:class="tt2" th:id="${c.menuId}" th:each="c : ${cateList}" th:onclick="clicks([[${c.menuId}]],[[${c.show}]]);"
+			 	th:style="${c.show == 1 }?'color:gray'">
+				<td class="t t1" th:text="${c.menuName}"  ></td>
+				<td class="t t1" th:if="${c.show == 0}" th:text="사용안함" ></td>
+				<td class="t t1" th:if="${c.show == 1}" th:text="사용중"></td>
+			</tr>			
 		</table>
+		
 		<div class="Lfloat">
 			<button type="button" class="cateBtn">추가</button>
 		</div>
+		
+		
+		<script th:inline="javascript">
+				
+			
+		
+		</script>
+		
 	
 </div>
 

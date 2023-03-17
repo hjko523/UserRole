@@ -14,6 +14,8 @@ public interface MenuService {
 	List<String> findCate();
 
 	List<Menu> findCateList(String category);
+
+	int updateCateShow(String menuId);
     
     
 }

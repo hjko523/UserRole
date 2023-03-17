@@ -14,6 +14,10 @@ public interface MenuMapper {
 	List<String> findCate();
 
 	List<Menu> findCateList(String category);
+
+	int updateCateShow(String menuId);
+
+	Menu findMenuList(String menuId);
   
 
 }

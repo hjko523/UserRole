@@ -44,24 +44,24 @@ select {
 				
 				
 			</table>	 -->
-			
-			<table class="roleDetail">
-				<tr>
-					<th>권한명</th>
-					<th>상태</th>
-					<th>설명</th>
-				</tr>
-				
-				<tr th:each="r : ${roleList}" >
-					<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]],[[${r.roleName}]])"></td>
-					<td th:text="${r.state}"></td>
-					<td th:text="${r.description}"></td>
-				</tr>
-				
-			</table>	
+			<div class="roleDetail_table">
+				<table class="roleDetail">
+					<tr>
+						<th>권한명</th>
+						<th>상태</th>
+						<th>설명</th>
+					</tr>
+					
+					<tr th:each="r : ${roleList}" >
+						<td th:text="${r.roleName}" th:onclick="clickRole([[${r.roleId}]],[[${r.roleName}]])"></td>
+						<td th:text="${r.state}"></td>
+						<td th:text="${r.description}"></td>
+					</tr>				
+				</table>	
+			</div>
 		</div>
 
-		<div class="userRole_info test">
+		<div class="userRole_info ">
 			<div class="userRole_info_sub">
 				<div class="urInfo test">
 					<div class="table_title" style="margin:0;"><b>해당 권한 사용자 목록</b></div>
@@ -107,22 +107,19 @@ select {
 
 
 	// 선택한 권한 관련 사용자 목록 출력
-	function clickRole(roleId, roleName){	
-	
+	function clickRole(roleId, roleName){		
 
 		//var roleId = data;
 		console.log("선택한 권한 : " +roleId);
-		console.log("선택한 권한 : " +roleName);
-		 
+		console.log("선택한 권한 : " +roleName);		 
 		
 		//$("#selInfo_table").load(location.href + " #selInfo_table")
 		
 		document.getElementById("userId").textContent = "";		
 		document.getElementById("username").textContent = "";
-		document.getElementById("ur_select").selectedIndex = 0;
+		document.getElementById("ur_select").selectedIndex = 0;		
 		
-		
-		
+		// 해당 권한 사용자 목록
 		$.ajax({
             url: 'userRole_info',
             type: "post",
@@ -136,6 +133,7 @@ select {
             }
          })
         
+         // 해당 권한이 아닌 사용자 목록
          $.ajax({
             url: 'noUserRole_info',
             type: "post",
@@ -203,6 +201,7 @@ $(document).ready(function () {
              		
              		//console("noUser:" + roleId);
              		$.ajax({
+             			
                         url: 'noUserRole_info',
                         type: "post",
                         data: {roleId:roleId}, 
@@ -211,6 +210,7 @@ $(document).ready(function () {
                         
                         	$(".NoUrInfo_table").replaceWith(data); 
                         	$("#"+userId).parent().remove();
+                        	swal("수정되었습니다", "", "success");
                            
                         }
                      })	   

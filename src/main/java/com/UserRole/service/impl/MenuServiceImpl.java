@@ -43,8 +43,24 @@ public class MenuServiceImpl implements MenuService{
 
 	@Override
 	public List<Menu> findCateList(String category) {
-		log.info(category);
+		
 		return  menuMapper.findCateList(category);
+	}
+
+
+	@Override
+	public int updateCateShow(String menuId) {
+		
+		log.info("# update show");
+		log.info("menuId={}", menuId);
+		
+		// 선택한 메뉴 정보 가져오기
+		//Menu menu = menuMapper.findMenuList(menuId);
+		
+		int result = menuMapper.updateCateShow(menuId);
+		
+		
+		return result;
 	}
 	
 

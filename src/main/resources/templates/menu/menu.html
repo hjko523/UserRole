@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
-      layout:decorate="~{layout/layout1}">
+	xmlns:layout="http://www.ultraq.net.nz/thyemleaf/layout"
+	layout:decorate="~{layout/layout1}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -9,49 +9,45 @@
 
 <th:block layout:fragment="css">
 
-<style>
-
+	<style>
 tr, td {
 	padding: 3px 5px;
-	
-	}
-	
-	th {
-		padding: 0;
-		}
+}
 
+th {
+	padding: 0;
+}
 </style>
 
 </th:block>
 
 <body>
 
-<div layout:fragment="content">
+	<div layout:fragment="content">
 
-	<div class="wrapper">		
-		<div class="menu_wrap test">	
-			<div class="menu_wrap_sub test">
-				<div class="available_menu test">
-					<div class="available_menu_table scroll">
-						<table>
-							<thead>
-							<tr class="table_fixed">
-								<th>분류</th>
-								<th>이름</th>
-								<th>타입</th>
-							</tr>
-							</thead>
-							<tbody>
-								<tr th:each="m : ${menuList}">
-									<td th:text="${m.category}"></td>
-									<td th:text="${m.menuName}"></td>
-									<td th:text="${m.menuType}"></td>
-	
-								</tr>
-							</tbody>
-						</table>
+		<div class="wrapper">
+			<div class="menu_wrap test">
+				<div class="menu_wrap_sub test">
+					<div class="available_menu test">
+						<div class="available_menu_table scroll">
+							<table>
+								<thead>
+									<tr class="table_fixed">
+										<th>분류</th>
+										<th>카테고리</th>
+										<th>이름</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="m : ${menuList}">
+										<td th:text="${m.category}"></td>
+										<td th:text="${m.cateSub}"></td>
+										<td th:text="${m.menuName}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-				</div>
 
 					<div class="class_menu test">
 						<div class="class_menu_table scroll">
@@ -59,93 +55,161 @@ tr, td {
 								<tr>
 									<th>분류</th>
 								</tr>
-								<tr th:each="c : ${cate}">
-									<td th:text="${c}" th:onclick="clickCate([[${c}]])"></td>
+								<tr class="tt1" th:id="${c}" th:each="c : ${cate}"
+									th:onclick="clickCate([[${c}]])">
+									<td th:text="${c}"></td>
 								</tr>
 							</table>
 						</div>
-						<div class="class_menu_table2 scroll" th:replace="~{/menu/flag_menuCate::cate}"></div>
+						<div class="class_menu_table2 scroll"
+							th:replace="~{/menu/flag_menuCate::cate}"></div>
 						<!-- <div class="Lfloat">
 							<button class="">추가</button>
 						</div> -->
 					</div>
+					<div class="aad">
+						<button id="addBtn">메뉴 추가</button>
+					</div>
 				</div>
+			</div>
+
+
+			<div class="menu_add">
+				<div class="menu_add_title test">메뉴 추가</div>
+				<div class="menu_add_table test">
+					<table>
+						<tr>
+							<th>분류</th>
+							<td>
+								<select id="category">
+										<option value="사용자">사용자</option>
+										<option value="기타">기타</option>
+										<option value="사용자">사용자</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>소분류</th>
+							<td>
+								<select id="category_sub">
+										<option value="사용자">사용자</option>
+										<option value="기타">기타</option>
+										<option value="사용자">사용자</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>메뉴이름</th>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<th>메뉴타입</th>
+							<td><select id="menuType">
+									<option value="게시판형">게시판형</option>
+									<option value="기타">기타</option>
+							</select></td>
+						</tr>
+						<tr>
+							<th>활성화</th>
+							<td><input type="radio" value="1">예 <input
+								type="radio" value="0">아니오</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+
 		</div>
-		
-		
-	</div> <!-- wrapper -->	
-</div>
+		<!-- wrapper -->
+	</div>
 
 
-<th:block layout:fragment="script">
-<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
-<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
-<script th:src="@{/js/plugins/validate/validate-ko.js}" ></script>
+	<th:block layout:fragment="script">
+		<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}" async></script>
+		<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+		<script th:src="@{/js/plugins/validate/validate-ko.js}"></script>
 
 
-<script>
+		<script>
+			// 분류별 카테고리 내역
+			function clickCate(data) {
 
+				console.log(data);
 
+				// 선택한 카테고리 배경색으로 표시
+				$(".tt1").css("backgroundColor", "transparent");
+				$("#" + data).css("background-color", "skyBlue");
 
-	// 분류별 카테고리 내역
-	function clickCate(data){	
-	
-		console.log(data);
-		
-        
-         $.ajax({
-            url: 'menu_cate',
-            type: "post",
-            data: {cate:data},            
-            success: function (data) {         	           	
-            
-            	$(".class_menu_table2").replaceWith(data);           
-               
-            }
-         })	   
-		
-	};
-	
-	 function clicks(target){
-		console.log("click / " + target);
+				// 선택한 카테고리 데이터 가져오기
+				$.ajax({
+					url : 'menu_cate',
+					type : "post",
+					data : {
+						cate : data
+					},
+					success : function(data) {
 
-		$(".tt").css("backgroundColor", "transparent");
-		$("#" + target).css("background-color","blue");		
-		
-		 
-	    var menuId = target; // 선택한 행의 menuId 값 저장
-	    
-	    $(".cateBtn").click(function(){
-	    	console.log("hi")
-	      /*   $.ajax({
-	            type: "POST",
-	            url: "your_url",
-	            data: {"menuId": menuId},
-	            success: function(response){
-	                console.log(response);
-	            },
-	            error: function(error){
-	                console.log(error);
-	            }
-	        }); */
-	    });
-	}
-	
+						$(".class_menu_table2").replaceWith(data);
 
+					}
+				})
 
+			};
 
+			// 사용할 메뉴 추가하기
+			function clicks(target, show) {
 
-	 
-	 
-	$(document).ready(function() {
-		
-		  
-		});
-	
- 
-</script>
+				console.log("click");
+				console.log("target: " + target + " / show: " + show);	
+				
+				// 선택한 컬럼 표시
+				$(".tt2").css("backgroundColor", "transparent");	// 기존 선택 초기화
+				$("#" + target).css("background-color", "skyBlue");				
+				
+					$(".cateBtn").click(function() {
+						
+						console.log("hi")					
+						
+						// 이미 추가된 메뉴 빼기 
+						if(show == 1){
+							
+							swal("이미 추가되어 있습니다.", "", "error");
+							
+						} else {		
+									
+							 $.ajax({						 
+							    type: "POST",
+							    url: "menu_show",
+							    data: {"menuId": target},
+							    success: function(data){
+							    	
+							    	if(data == 1){
+							    		
+							    		swal("추가 되었습니다", "", "success");
+							    		
+							    		
+							    		
+							    	} else {
+							    		swal("오류 발생 / 추가되지 않음", "", "error");
+							    	}
+							    },
+							    error: function(error){
+							    	
+							    	 swal("오류 발생 / 추가되지 않음", "", "error");
+							    }
+							}); 
+						}
 
-</th:block>
+					});					
+				
+			}
+
+			$(document).ready(function() {
+
+			});
+		</script>
+
+	</th:block>
 
 
 </body>

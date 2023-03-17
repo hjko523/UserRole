@@ -28,7 +28,7 @@ public class MenuPOJO {
 	
 	private String category;	
 	
-	private String cateNum;
+	private String cateSub;
 	
 	private String menuType;
 	

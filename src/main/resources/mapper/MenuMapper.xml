@@ -6,7 +6,7 @@
   <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
     <result column="menu_id" 	    property="menuId" />
     <result column="category" 	    property="category" />
-    <result column="category_num" 	property="cateNum" />
+    <result column="category_sub" 	property="cateSub" />
     <result column="menu_name" 	    property="menuName" />
     <result column="crud" 	        property="crud" />
     <result column="menu_type" 	    property="menuType" />
@@ -15,23 +15,47 @@
 
  
   <insert id="updateByExampleSelective" parameterType="map">
-    insert into menu (menu_id, category,category_num, menu_name, crud, menu_type, `show`)
-    values (#{menuId}, #{category}, #{cateNum}, #{menuName}, #{crud}, #{menuType}, #{show})
+    insert into menu (menu_id, category,category_sub, menu_name, crud, menu_type, `show`)
+    values (#{menuId}, #{category}, #{cateSub}, #{menuName}, #{crud}, #{menuType}, #{show})
   </insert>
   
   
   <select id="findMenu" parameterType="string" resultMap="menuMap">
   	select 	menu_id,
   			category,
-  			category_num,
+  			category_sub,
   			menu_name,
   			crud,
   			menu_type,
   			`show`
   			
   	from 	menu
+  	
+  	where	`show` = 1
   
   </select>
+  
+  
+  
+  <select id="findMenuList" parameterType="string" resultMap="menuMap">
+  	select 	menu_id,
+  			category,
+  			category_sub,
+  			menu_name,
+  			crud,
+  			menu_type,
+  			`show`
+  			
+  	from 	menu
+  	
+  	where	menu_id = #{menuId}
+  	
+  	
+  
+  </select>
+  
+  
+  
   
   
   <select id="findCate" parameterType="string" resultType="string">
@@ -47,20 +71,31 @@
   <select id="findCateList" parameterType="string" resultMap="menuMap">
   	select 	menu_id,
   			category,
-  			category_num,
+  			category_sub,
   			menu_name,
   			crud,
   			menu_type,
-  			`show`
+  			`show` 			
   			
   	from 	menu
   	
   	where   category = #{category}
+  	
+  	
   
-  </select>
-  
+  </select>  
     
- 	<update id="updateByExample" parameterType="map">
+    
+	<update id="updateCateShow" parameterType="string" >
+	    update 	menu
+	    
+	    set		`show` = 1
+	    
+	    where 	menu_id = #{menuId}
+  </update>
+  
+  
+	<update id="updateByExample" parameterType="map">
     update menu
     set category = #{category,jdbcType=VARCHAR},
       menu_name = #{menuName,jdbcType=VARCHAR},

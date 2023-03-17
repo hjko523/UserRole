@@ -2,8 +2,14 @@
 /* user_role 페이지 */
 
 .role_info {
-	height: 250px;
+	height: 200px;
 	text-align: center;
+}
+
+.roleDetail_table {
+	display: inline-block;
+	margin: auto;
+	
 }
 
 .userRole_title {
@@ -18,7 +24,7 @@
 
 .userRole_info_sub {	
 	height: 300px;
-	width: 70%;
+	width: 80%;
 	margin: auto;
 	padding-top: 30px;
 }
@@ -33,6 +39,7 @@
 .urInfo {	
     float: left;  
 	height: 250px;
+	margin-left: 60px;
 }
 
 
@@ -87,7 +94,7 @@
 
 .menu_wrap_sub {
 	height: 300px;
-	width: 900px;
+	width: 1000px;
 	margin: auto;
 	padding-top: 30px;
 }
@@ -101,7 +108,7 @@
 .class_menu_table, 
 .button_div {
 	float: left;
-	margin-right: 30px;
+	margin-right: 10px;
 
 } 
 
@@ -112,14 +119,14 @@
 
 .class_menu_table2 {
 	float: left;
-	width: 320px;
+	width: 300px;
 	height: 300px;
-	margin:3px;
+
 } 
 
 .class_menu_table2 table {	
 	float: left;
-	width: 250px;
+	width: 230px;
 } 
 
 
@@ -134,3 +141,20 @@ thead {
     border: 1px solid black;
 }
 
+
+/* menu add */
+
+.menu_add {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.menu_add_table {
+	margin-top: 15px;
+	text-align: center;
+	display: inline-block;
+}
+
+.cateBtn {
+	font-color: red;
+}

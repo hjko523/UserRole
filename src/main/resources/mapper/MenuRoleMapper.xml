@@ -18,7 +18,7 @@
   <resultMap id="menuMap" type="com.UserRole.model.Menu"> 
     <result column="menu_id" 	    property="menuId" />
     <result column="category" 	    property="category" />
-    <result column="category_num" 	property="cateNum" />
+    <result column="category_sub" 	property="cateSub" />
     <result column="menu_name" 	    property="menuName" />
     <result column="crud" 	        property="crud" />
     <result column="menu_type" 	    property="menuType" />
@@ -36,7 +36,7 @@
     <result column="delete"         property="delete" />
       <result column="state"        property="state" />
     <result column="category" 	    property="category" />
-    <result column="category_num" 	property="cateNum" />
+    <result column="category_sub" 	property="cateSub" />
     <result column="menu_name" 	    property="menuName" />
     <result column="crud" 	        property="crud" />
     <result column="menu_type"    	property="menuType" />

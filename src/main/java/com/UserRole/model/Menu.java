@@ -9,7 +9,7 @@ public class Menu {
 
 	private String category;
 
-	private String cateNum;
+	private String cateSub;
 
 	private String menuName;
 
